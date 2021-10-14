@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lessons/icons/my_flutter_app_icons.dart';
 
 void main() => runApp(Lessons());
 
@@ -10,14 +11,14 @@ class Lessons extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text(
-            "Урок 22",
+          title: const Text(
+            "Урок 25",
           ),
           backgroundColor: Colors.blueAccent,
         ),
         backgroundColor: Colors.white,
         bottomNavigationBar: BottomNavigationBar(
-          items: [
+          items: const [
             BottomNavigationBarItem(icon: Icon(Icons.account_box), label: "Аккаунт"),
             BottomNavigationBarItem(icon: Icon(Icons.edit), label: "Редактор"),
             BottomNavigationBarItem(icon: Icon(Icons.search), label: "Поиск"),
@@ -30,43 +31,41 @@ class Lessons extends StatelessWidget {
         /// 3) Добавлять в приложение изображение из интернета.
         /// 4) Добавлять в приложение изображение из директории приложения.
 
-        body: Align(
-          alignment: Alignment.center,
-          child: Icon( /// Виджет, позволяющий добавить в приложение иконки.
-
-
-              Icons.remove_red_eye_outlined, /// Конструктор Icons. аналогично
-            /// конструктору Colors. позволяет выбирать иконки из библиотеки
-            /// Flutter.
-
-              size: 70, // Свойство, задающее размер иконки.
-
-              color: Colors.lightBlueAccent, // Свойство, задающее цвет иконки.
-
-          ),
-        ),
+        // body: const Align(
+        //   alignment: Alignment.center,
+        //   child: Icon(// Виджет, позволяющий добавить в приложение иконки.
+        //       MyFlutterApp.hand_lizard, /// Конструктор Icons. аналогично
+        //     /// конструктору Colors. позволяет выбирать иконки из библиотеки
+        //     /// Flutter.
+        //
+        //       size: 100, // Свойство, задающее размер иконки.
+        //
+        //       color: Colors.lightBlueAccent, // Свойство, задающее цвет иконки.
+        //
+        //   ),
+        // ),
 
         /// Теперь рассмотрим пример, в котором научимся добавлять в приложение
         /// изображение из интернета.
         
-        // body: Center( // Синтаксический сахар, иная форма записи виджета Align()
-        //   // со значением Alignment.center.
-        //
-        //   child: Container(
-        //     width: 200,
-        //     height: 400,
-        //     child: Image.network("https://cdn1.ozone.ru/multimedia/1037547238.jpg",
-        //       /// Конструктор Image.network позволяет добавить в приложение
-        //       /// изображение из интернета. Для этого, передаем в конструктор ссылку
-        //       /// на изображение, указанную в ковычках.
-        //
-        //       fit: BoxFit.contain, /// Свойство, отвечающее за размещение
-        //       /// изображения внутри родительского виджета, его размеры и
-        //       /// пропорции. Принимает в себя конструкторы BoxFit.
-        //
-        //     ),
-        //   ),
-        // ),
+        body: Center( // Синтаксический сахар, иная форма записи виджета Align()
+          // со значением Alignment.center.
+
+          child: SizedBox(
+            width: 300,
+            height: 400,
+            child: Image.asset("assets/images/example.jpg",
+              /// Конструктор Image.network позволяет добавить в приложение
+              /// изображение из интернета. Для этого, передаем в конструктор ссылку
+              /// на изображение, указанную в ковычках.
+
+              fit: BoxFit.fitWidth, /// Свойство, отвечающее за размещение
+              /// изображения внутри родительского виджета, его размеры и
+              /// пропорции. Принимает в себя конструкторы BoxFit.
+
+            ),
+          ),
+        ),
       ),
     );
   }
