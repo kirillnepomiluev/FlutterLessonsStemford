@@ -11,7 +11,9 @@ class Lessons extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           title: const Text(
-            "Урок 21",
+            "Урок 21", style: TextStyle(
+            fontFamily: "Crystal"
+          ),
           ),
           backgroundColor: Colors.blueAccent,
         ),
@@ -28,101 +30,110 @@ class Lessons extends StatelessWidget {
             BottomNavigationBarItem(icon: Icon(Icons.search), label: "Поиск"),
           ],
         ),
-        body: const Center(
-          child: Text(
-            "Hello  World!!!",
-            // Есть много способов декорировать текста. Универсальный виджет,
-            // отвечающий за стилизацию текстаявляется виджет TextStyle(),
-            // передаваемый в свойство style/.
-
-            style: TextStyle(
-              // Свойство, отвечающее за стиль текста. Принимает в себя виджет TextStyle().
-              fontFamily: "Avara",
-              fontSize: 36,
-              // Свойство, отвечающее за размер шрифта. Принимает в себя вещественное число.
-
-              fontWeight: FontWeight.w700,
-              // Свойство, отвечающее за толщину текста. Принимает в себя конструкторы
-              // FontWeight.
-
-              fontStyle: FontStyle.normal,
-              // Свойство, отвечающее за стиль текста. Принимает в себя конструкторы
-              // FontStyle.
-
-              decoration: TextDecoration.underline,
-              // Свойство, отвечающее за декорирование текста. Принимает в себя
-              // конструкторы TextDecoration.
-
-              color: Color(0xFFB7A819), // Свойство, отвечающее за цвет текста.
-              // Принимает в себя цветовые виджеты.
-            ),
-          ),
-        ),
-
-        // body: Center(
-        //   child: RichText(
-        //     // В предыдущем примере мы научились декорировать текст.
-        //     // Однако, стиль текста распространялся на весь текст. Что
-        //     // если нам нужно стилизовать отдельный участок текста?
-        //     // Для этого существует виджет RichText().
-        //     // Он позволяет нам разбить текст на участки, и
-        //     /// задавать стиль для каждого из них индивидуально.
+        // body: const Center(
+        //   child: Text(
+        //     "Hello  World!!!",
+        //     // Есть много способов декорировать текста. Универсальный виджет,
+        //     // отвечающий за стилизацию текстаявляется виджет TextStyle(),
+        //     // передаваемый в свойство style/.
         //
-        //     text: const TextSpan(
-        //       // Свойство, в которое помещается виджет TextSpan(),
-        //       // содержащий фрагмент текста и его стиль.
+        //     style: TextStyle(
+        //       // Свойство, отвечающее за стиль текста. Принимает в себя виджет TextStyle().
+        //        fontFamily: "Avara",
+        //      //fontFamily: "Crystal",
         //
-        //       style: TextStyle(
-        //         // Сюда мы поместим стиль текста по умолчанию.
-        //         fontSize: 30,
-        //         fontWeight: FontWeight.bold,
-        //         fontStyle: FontStyle.italic,
-        //         decoration: TextDecoration.underline,
-        //         color: Colors.deepPurple,
-        //       ),
-        //       children: [
-        //         /// Свойство children содержит в себе дочерние виджеты.
-        //         //  При этом дочерние виджеты помещаются в квадратные скобки.
-        //         /// Теперь внутрь свойства children мы передадим еще несколько
-        //         //   виджетов TextSpan(), в которых будут содержаться отдельные
-        //         /// фрагменты текста, и стили для них. Если же мы не зададим
-        //         //   для них уникальный стил, то они примут параметры, указанные
-        //         /// выше.
-        //         TextSpan(
-        //           text: "!!!",
-        //           style: TextStyle(
-        //               color: Colors.blue,
-        //               fontStyle: FontStyle.normal,
-        //               fontSize: 35,
-        //               decoration: TextDecoration.none),
+        //       fontSize: 42,
+        //       // Свойство, отвечающее за размер шрифта. Принимает в себя вещественное число.
         //
-        //           /// Изменим цвет
-        //           //    на синий, уиерем курсив и подчеркивание, а также увеличиваем
-        //           ///размер шрифта
-        //         ),
-        //         TextSpan(
-        //           // Первый TextSpan будет содержать слово Hello .
+        //       fontWeight: FontWeight.w900,
+        //       // Свойство, отвечающее за толщину текста. Принимает в себя конструкторы
+        //       // FontWeight.
         //
-        //           text: "Hello ",
-        //           // Здесь в свойство text мы уже передаем
-        //           //  непосредственно текст, над которым будут произвоодиться изменения.
+        //       fontStyle: FontStyle.normal,
+        //       // Свойство, отвечающее за стиль текста. Принимает в себя конструкторы
+        //       // FontStyle.
         //
-        //           style: TextStyle(
-        //               fontWeight: FontWeight.normal,
-        //               color: Colors.black,
-        //               decoration: TextDecoration.none), // Сделаем текст нормальной толщины,
-        //           //    изменим цвет на черный и уберем нижнее подчеркивание.
-        //         ),
+        //       decoration: TextDecoration.underline,
+        //       decorationColor: Color(0xFF39336D),
+        //       decorationThickness: 3,
+        //       // Свойство, отвечающее за декорирование текста. Принимает в себя
+        //       // конструкторы TextDecoration.
         //
-        //         TextSpan(
-        //           text: "World",
-        //           // style: TextStyle(color: Colors.blueGrey), // Изменим цвет текста
-        //           //     на синий.
-        //         ),
-        //       ],
+        //       color: Color(0xFFB7A819), // Свойство, отвечающее за цвет текста.
+        //       // Принимает в себя цветовые виджеты.
         //     ),
         //   ),
         // ),
+
+        body: Center(
+          child: RichText(
+            // В предыдущем примере мы научились декорировать текст.
+            // Однако, стиль текста распространялся на весь текст. Что
+            // если нам нужно стилизовать отдельный участок текста?
+            // Для этого существует виджет RichText().
+            // Он позволяет нам разбить текст на участки, и
+            /// задавать стиль для каждого из них индивидуально.
+
+            text: const TextSpan(
+              // Свойство, в которое помещается виджет TextSpan(),
+              // содержащий фрагмент текста и его стиль.
+
+              style: TextStyle(
+                // Сюда мы поместим стиль текста по умолчанию.
+                fontSize: 36,
+                fontWeight: FontWeight.bold,
+                fontStyle: FontStyle.italic,
+                decoration: TextDecoration.underline,
+                color: Colors.deepPurple,
+              ),
+              children: [
+                // Свойство children содержит в себе дочерние виджеты.
+                //  При этом дочерние виджеты помещаются в квадратные скобки.
+                // Теперь внутрь свойства children мы передадим еще несколько
+                //   виджетов TextSpan(), в которых будут содержаться отдельные
+                // фрагменты текста, и стили для них. Если же мы не зададим
+                //   для них уникальный стил, то они примут параметры, указанные
+                // выше.
+
+                TextSpan(
+                  // Первый TextSpan будет содержать слово Hello .
+                  text: "Hello ",
+                  // Здесь в свойство text мы уже передаем
+                  //  непосредственно текст, над которым будут произвоодиться изменения.
+
+                  style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      color: Colors.black,
+                      decoration: TextDecoration.none), // Сделаем текст нормальной толщины,
+                  //    изменим цвет на черный и уберем нижнее подчеркивание.
+                ),
+
+                TextSpan(
+                  text: "World",
+                   style: TextStyle(
+                     color: Colors.blueGrey,
+                     fontStyle: FontStyle.normal,// Изменим цвет текста
+                     fontFamily: "Avara",
+                   ),
+
+                  //     на синий.
+                ),
+                TextSpan(
+                  text: "!!!",
+                  style: TextStyle(
+                      color: Colors.blue,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 24,
+                      decoration: TextDecoration.none),
+
+                  /// Изменим цвет
+                  //    на синий, уиерем курсив и подчеркивание, а также увеличиваем
+                  ///размер шрифта
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

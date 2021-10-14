@@ -64,6 +64,9 @@ flutter:
     - family: Avara
       fonts:
         - asset: assets/fonts/Avara.ttf
+    - family: Crystal
+      fonts:
+        - asset: assets/fonts/CRYSTAL.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:
