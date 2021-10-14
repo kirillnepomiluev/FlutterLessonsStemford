@@ -24,218 +24,49 @@ class Lessons extends StatelessWidget {
           ],
         ),
 
-        /// На предыдущем занятии мы рассмотрили варианты расположения нескольких
-        /// виджетов в колонку и в строку. Сегодня же мы научимся:
-        /// 1) Накладывать виджеты друг на друга
-        /// 2) Менять расположение дочернего виджета внутри родительского
-        /// 3) Задавать размеры виджетам, у которых нет полей, отвечающих за размер.
-        /// 4) Создавать отступы у виджетов.
+        /// На данном уроке мы научимся:
+        /// 1) Пользоваться виджетом Icon(), и его свойствами.
+        /// 2) Добавлять собственные иконки.
+        /// 3) Добавлять в приложение изображение из интернета.
+        /// 4) Добавлять в приложение изображение из директории приложения.
 
-        body: Align( /// Виджет Align() позволяет задать положение дочернего
-          /// виджета относительно родительского. В нашем случае родительский
-          /// виджет - это Scaffold(), поэтому в нашем случае виджет Align()
-          /// задает положение относительно всего экрана.
+        body: Align(
+          alignment: Alignment.center,
+          child: Icon( /// Виджет, позволяющий добавить в приложение иконки.
 
-          alignment: Alignment.center, /// Свойство, определяющее положение
-          /// дочернего виджета. Принимает в себя конструкторы Alignment.
 
-          child: Stack(
-            /// Виджет Stack() позволяет накладывать виджеты один на
-            /// другой. При этом наложение будет происходить в порядке введения
-            /// виджетов: самый первый будет снизу, далее - второй и т.д. Размер
-            /// определяется максимальными размерами дочерних элементов.
-            /// Рассмотрим свойства:
+              Icons.remove_red_eye_outlined, /// Конструктор Icons. аналогично
+            /// конструктору Colors. позволяет выбирать иконки из библиотеки
+            /// Flutter.
 
-            alignment: Alignment.center, // Одно из свойств, отвечающее за
-            // позиционирование виджетов. Принимает в себя конструкторы Alignment.
-            // Далее мы подробнее познакомимся с виджетом Alignment().
+              size: 70, // Свойство, задающее размер иконки.
 
-            children: [
-              // В свойство children передаются виджеты, помещаемые в
-              // строку. Возьмем для примера контейнеры из предыдущего урока.
+              color: Colors.lightBlueAccent, // Свойство, задающее цвет иконки.
 
-              /// Для того, чтобы самостоятельно задать расположение виджетам в
-              /// стэке, необходимо обернуть каждый его элемент в виджет
-              /// Positioned()
-
-              Container(
-                width: 300,
-                height: 300,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black,
-                      blurRadius: 5,
-                      offset: Offset(5, 5),
-                    ),
-                  ],
-                  gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [
-                      Colors.deepPurpleAccent,
-                      Colors.blueAccent,
-                      Colors.lightBlueAccent
-                    ],
-                  ),
-                  color: Colors.blueGrey,
-                  shape: BoxShape.rectangle,
-                  border: Border(
-                    bottom: BorderSide(
-                      width: 4,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-
-              Positioned( // Виджет, позволяющий задавать положение виджета вручную.
-
-                left: 10, // Свойство, отвечающее за отступ слева от края стэка.
-
-                top: 30, // Свойство, отвечающее за отступ сверху от края стэка.
-
-                // right: 10, // Свойство, отвечающее за отступ справа от края стэка.
-
-                // bottom: 10, // Свойство, отвечающее за отступ снизу от края стэка.
-
-                width: 60, /// Свойство, задающее ширину объекта. Срабатывает даже
-                /// если у объекта имеется свой заданый размер
-
-                height: 60, /// Свойство, задающее ширину объекта. Срабатывает даже
-                /// если у объекта имеется свой заданый размер
-
-                child: Container(
-                  width: 200,
-                  height: 200,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black,
-                        blurRadius: 3,
-                        offset: Offset(4, 5),
-                      ),
-                    ],
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Colors.teal,
-                        Colors.green,
-                        Colors.greenAccent,
-                      ],
-                    ),
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      width: 2,
-                      color: Colors.teal,
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                width: 100,
-                height: 100,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black,
-                      blurRadius: 3,
-                      offset: Offset(4, 5),
-                    ),
-                  ],
-                  gradient: RadialGradient(
-                    center: Alignment.center,
-                    colors: [
-                      Colors.red,
-                      Colors.orangeAccent,
-                      Colors.yellowAccent
-                    ],
-                  ),
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    width: 2,
-                    color: Colors.red,
-                  ),
-                ),
-              ),
-              Positioned(
-                right: 0,
-                top: 0,
-
-                /// Мы добавили в стэк еще один контейнер, и задали ему положение:
-                /// он должен находиться в верхнем правом углу.
-
-                child: Padding( /// Виджет Padding() создает отступы от границ
-                  /// дочернего виджета.
-
-                  padding: EdgeInsets.all(20), /// В свойство padding помещается
-                  /// конструктор, отвечающий за характер отступа. В примере был
-                  /// использован конструктор EdgeInserts.all(), который создает
-                  /// равные отступы со всех сторон от дочернего виджета. Также
-                  /// есть конструктор EdgeInserts.symmetric(), содержащий два
-                  /// параметра - horizontal (отступ симметрично по горизонтали)
-                  /// и vertical (отступ симметрично по вертикали). Также есть
-                  /// конструктор EdgeInserts.only(), в котором четыре параметра:
-                  /// bottom, top, left, right.
-
-                  child: Container( /// Мы мидим, что несмотря на то, что контейнер
-                    /// должен был оказаться втлевом верхнем углу, он имеет отступы
-                    /// от края стэка, которые задаются виджетом Padding().
-
-                    width: 100,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      color: Colors.pink,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black,
-                          blurRadius: 3,
-                          offset: Offset(4, 5),
-                        ),
-                      ],
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        width: 2,
-                        color: Colors.red,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                  bottom: 0,
-                  left: 0,
-                  child: Padding(
-                    padding:  EdgeInsets.only(bottom: 10, left: 10),
-
-                    child: SizedBox( /// С помощью виджета SizedBox() можно задать
-                      /// размеры дочернему виджету, даже при условии, что у
-                      /// него не свойств, отвечающих за его размеры.
-
-                      width: 100, // Поле, задающее ширину.
-
-                      height: 60, // Поле, задающее высоту.
-
-                      child: Container(
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black,
-                              blurRadius: 3,
-                              offset: Offset(4, 5),
-                            ),
-                          ],
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white
-                        ),
-                      ),
-                    ),
-                  ),
-              ),
-            ],
           ),
         ),
+
+        /// Теперь рассмотрим пример, в котором научимся добавлять в приложение
+        /// изображение из интернета.
+        
+        // body: Center( // Синтаксический сахар, иная форма записи виджета Align()
+        //   // со значением Alignment.center.
+        //
+        //   child: Container(
+        //     width: 200,
+        //     height: 400,
+        //     child: Image.network("https://cdn1.ozone.ru/multimedia/1037547238.jpg",
+        //       /// Конструктор Image.network позволяет добавить в приложение
+        //       /// изображение из интернета. Для этого, передаем в конструктор ссылку
+        //       /// на изображение, указанную в ковычках.
+        //
+        //       fit: BoxFit.contain, /// Свойство, отвечающее за размещение
+        //       /// изображения внутри родительского виджета, его размеры и
+        //       /// пропорции. Принимает в себя конструкторы BoxFit.
+        //
+        //     ),
+        //   ),
+        // ),
       ),
     );
   }
