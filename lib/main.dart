@@ -3,255 +3,240 @@ import 'package:flutter/material.dart';
 void main() => runApp(Lessons());
 
 class Lessons extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       title: "Уроки Flutter",
       home: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Урок 22",
+          title: Text(
+            "Урок 22",
           ),
           backgroundColor: Colors.blueAccent,
         ),
         backgroundColor: Colors.white,
-        bottomNavigationBar: BottomNavigationBar(items: [
-          BottomNavigationBarItem(icon: Icon(Icons.account_box) , label: "Аккаунт"),
-          BottomNavigationBarItem(icon: Icon(Icons.edit), label: "Редактор"),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label:"Поиск"),
-        ],),
+        bottomNavigationBar: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.account_box), label: "Аккаунт"),
+            BottomNavigationBarItem(icon: Icon(Icons.edit), label: "Редактор"),
+            BottomNavigationBarItem(icon: Icon(Icons.search), label: "Поиск"),
+          ],
+        ),
 
-        /// Итак, мы научились создавать контейнеры и стилизовать их. Но что,
-        /// если нам нужно расположить несколько контейнеров на одной странице?
-        /// С этим нам помогут позиционные виджеты. Начнем изучение с виджетов
-        /// Row() и Column(). Рассмотрим их по порядку:
+        /// На предыдущем занятии мы рассмотрили варианты расположения нескольких
+        /// виджетов в колонку и в строку. Сегодня же мы научимся:
+        /// 1) Накладывать виджеты друг на друга
+        /// 2) Менять расположение дочернего виджета внутри родительского
+        /// 3) Задавать размеры виджетам, у которых нет полей, отвечающих за размер.
+        /// 4) Создавать отступы у виджетов.
 
-        body: Container( // Поместим виджет Row() в свойство child виджета
-          // Container().
-          // height: double.infinity, // Конструктор double.infinity позволяет
-          // задать максимально возможное число.
+        body: Align( /// Виджет Align() позволяет задать положение дочернего
+          /// виджета относительно родительского. В нашем случае родительский
+          /// виджет - это Scaffold(), поэтому в нашем случае виджет Align()
+          /// задает положение относительно всего экрана.
 
-          child: Row( /// Виджет Row позволяет располагать несколько виджетов в
-            /// строку. Ширина строки определяется свободным пространством на
-            /// экране, а высота - высотой самого высокого виджета. Поэтому
-            /// горизонталь - это главная ось строки, а вертикаль - побочная.
-            /// Начинаются обе оси в левом верхнем углу экрана. Рассмотрим
-            /// свойства виджета Row():
+          alignment: Alignment.center, /// Свойство, определяющее положение
+          /// дочернего виджета. Принимает в себя конструкторы Alignment.
 
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly, /// Свойство,
-            /// отвечающее за расположение виджетов на главной оси. Принимает
-            /// в себя конструкторы MainAxisAlignment.
+          child: Stack(
+            /// Виджет Stack() позволяет накладывать виджеты один на
+            /// другой. При этом наложение будет происходить в порядке введения
+            /// виджетов: самый первый будет снизу, далее - второй и т.д. Размер
+            /// определяется максимальными размерами дочерних элементов.
+            /// Рассмотрим свойства:
 
-            crossAxisAlignment: CrossAxisAlignment.end, /// Свойство, отвечающее
-            /// за расположение виджетов на побочной оси. Принимает в себя
-            /// конструкторы CrossAxisAlignment.
+            alignment: Alignment.center, // Одно из свойств, отвечающее за
+            // позиционирование виджетов. Принимает в себя конструкторы Alignment.
+            // Далее мы подробнее познакомимся с виджетом Alignment().
 
-            mainAxisSize: MainAxisSize.min, // Свойство, определяющее занимаемое
-            // строкой место. Принимает в себя конструкторы MainAxisSize.
-
-            children: [ // В свойство children передаются виджеты, помещаемые в
+            children: [
+              // В свойство children передаются виджеты, помещаемые в
               // строку. Возьмем для примера контейнеры из предыдущего урока.
 
-              Expanded( /// Виджет Expanded() позволяет распределять свободное
-                /// пространство между виджетами. Например, если поместить один
-                /// из виджетов в составе Row() в Expanded(), то он займет
-                /// все свободное пространство, при этом не искажая размер
-                /// виджетов, не помещенных в Expanded(). Но если в Expanded()
-                /// помещено несколько элементов, то пространство будет
-                /// распределяться пропорционально параметру flex, который
-                /// указан внутри виджета Expanded(). Рассмотрим пример:
+              /// Для того, чтобы самостоятельно задать расположение виджетам в
+              /// стэке, необходимо обернуть каждый его элемент в виджет
+              /// Positioned()
 
-                flex: 1, /// Свойство, определяющее пропорциональную долю
-                /// пространства, занимаемую виджетом.
-
-                child: Container(
-                  width: 100,
-                  height: 150,
-                  decoration: BoxDecoration(
-                    boxShadow: [BoxShadow(
+              Container(
+                width: 300,
+                height: 300,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
                       color: Colors.black,
                       blurRadius: 5,
                       offset: Offset(5, 5),
-                  ),],
+                    ),
+                  ],
+                  gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [
+                      Colors.deepPurpleAccent,
+                      Colors.blueAccent,
+                      Colors.lightBlueAccent
+                    ],
+                  ),
+                  color: Colors.blueGrey,
+                  shape: BoxShape.rectangle,
+                  border: Border(
+                    bottom: BorderSide(
+                      width: 4,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ),
+
+              Positioned( // Виджет, позволяющий задавать положение виджета вручную.
+
+                left: 10, // Свойство, отвечающее за отступ слева от края стэка.
+
+                top: 30, // Свойство, отвечающее за отступ сверху от края стэка.
+
+                // right: 10, // Свойство, отвечающее за отступ справа от края стэка.
+
+                // bottom: 10, // Свойство, отвечающее за отступ снизу от края стэка.
+
+                width: 60, /// Свойство, задающее ширину объекта. Срабатывает даже
+                /// если у объекта имеется свой заданый размер
+
+                height: 60, /// Свойство, задающее ширину объекта. Срабатывает даже
+                /// если у объекта имеется свой заданый размер
+
+                child: Container(
+                  width: 200,
+                  height: 200,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black,
+                        blurRadius: 3,
+                        offset: Offset(4, 5),
+                      ),
+                    ],
                     gradient: LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
                       colors: [
-                        Colors.deepPurpleAccent,
-                        Colors.blueAccent,
-                        Colors.lightBlueAccent
+                        Colors.teal,
+                        Colors.green,
+                        Colors.greenAccent,
                       ],
                     ),
-                    color: Colors.blueGrey,
-                    shape: BoxShape.rectangle,
-                    border:
-                    Border(
-                      bottom: BorderSide(
-                        width: 4,
-                        color: Colors.black,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      width: 2,
+                      color: Colors.teal,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black,
+                      blurRadius: 3,
+                      offset: Offset(4, 5),
+                    ),
+                  ],
+                  gradient: RadialGradient(
+                    center: Alignment.center,
+                    colors: [
+                      Colors.red,
+                      Colors.orangeAccent,
+                      Colors.yellowAccent
+                    ],
+                  ),
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    width: 2,
+                    color: Colors.red,
+                  ),
+                ),
+              ),
+              Positioned(
+                right: 0,
+                top: 0,
+
+                /// Мы добавили в стэк еще один контейнер, и задали ему положение:
+                /// он должен находиться в верхнем правом углу.
+
+                child: Padding( /// Виджет Padding() создает отступы от границ
+                  /// дочернего виджета.
+
+                  padding: EdgeInsets.all(20), /// В свойство padding помещается
+                  /// конструктор, отвечающий за характер отступа. В примере был
+                  /// использован конструктор EdgeInserts.all(), который создает
+                  /// равные отступы со всех сторон от дочернего виджета. Также
+                  /// есть конструктор EdgeInserts.symmetric(), содержащий два
+                  /// параметра - horizontal (отступ симметрично по горизонтали)
+                  /// и vertical (отступ симметрично по вертикали). Также есть
+                  /// конструктор EdgeInserts.only(), в котором четыре параметра:
+                  /// bottom, top, left, right.
+
+                  child: Container( /// Мы мидим, что несмотря на то, что контейнер
+                    /// должен был оказаться втлевом верхнем углу, он имеет отступы
+                    /// от края стэка, которые задаются виджетом Padding().
+
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      color: Colors.pink,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black,
+                          blurRadius: 3,
+                          offset: Offset(4, 5),
+                        ),
+                      ],
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        width: 2,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                  bottom: 0,
+                  left: 0,
+                  child: Padding(
+                    padding:  EdgeInsets.only(bottom: 10, left: 10),
+
+                    child: SizedBox( /// С помощью виджета SizedBox() можно задать
+                      /// размеры дочернему виджету, даже при условии, что у
+                      /// него не свойств, отвечающих за его размеры.
+
+                      width: 100, // Поле, задающее ширину.
+
+                      height: 60, // Поле, задающее высоту.
+
+                      child: Container(
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black,
+                              blurRadius: 3,
+                              offset: Offset(4, 5),
+                            ),
+                          ],
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white
                         ),
                       ),
                     ),
                   ),
               ),
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                    boxShadow: [BoxShadow(
-                      color: Colors.black,
-                      blurRadius: 3,
-                      offset: Offset(4, 5),
-                    ),],
-                    gradient: RadialGradient(
-                      center: Alignment.center,
-                      colors: [
-                        Colors.red,
-                        Colors.orangeAccent,
-                        Colors.yellowAccent
-                      ],
-                    ),
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      width: 2,
-                      color: Colors.red,
-                    ),
-                  ),
-              ),
-                ),
-                Container(
-                width: 150,
-                height: 100,
-                decoration: BoxDecoration(
-                  boxShadow: [BoxShadow(
-                    color: Colors.black,
-                    blurRadius: 3,
-                    offset: Offset(4, 5),
-                  ),],
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [
-                      Colors.teal,
-                      Colors.green,
-                      Colors.greenAccent,
-                    ],
-                  ),
-                  borderRadius: BorderRadius.circular(30),
-                  border: Border.all(
-                    width: 2,
-                    color: Colors.teal,
-                  ),
-                ),
-              ),
             ],
           ),
         ),
-
-        // Теперь рассмотрим виджет Column():
-
-        // body: Column( /// Виджет Row позволяет располагать несколько виджетов в колонку. Высота колонки определяется свободным пространством на экране,
-        //   /// а ширина - шириной самого широкого виджета. Поэтому вертикаль - это главная ось колонки, а горизонталь - побочная. Начинаются обе
-        //   /// оси в левом верхнем углу экрана. Рассмотрим свойства виджета Column():
-        //   ///
-        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly, /// Свойство, отвечающее за расположение виджетов на главной оси. Принимает в себя
-        //   /// конструкторы MainAxisAlignment.
-        //
-        //   crossAxisAlignment: CrossAxisAlignment.start, /// Свойство, отвечающее за расположение виджетов на побочной оси. Принимает в себя
-        //   /// конструкторы CrossAxisAlignment.
-        //
-        //   children: [
-        //
-        //     Container(
-        //       child: Padding(
-        //         padding: const EdgeInsets.all(8.0),
-        //       ),
-        //       width: 100,
-        //       height: 150,
-        //       decoration: BoxDecoration(
-        //         boxShadow: [BoxShadow(
-        //           color: Colors.black,
-        //           blurRadius: 5,
-        //           offset: Offset(5, 5),
-        //         ),],
-        //         gradient: LinearGradient(
-        //           begin: Alignment.centerLeft,
-        //           end: Alignment.centerRight,
-        //           colors: [
-        //             Colors.deepPurpleAccent,
-        //             Colors.blueAccent,
-        //             Colors.lightBlueAccent
-        //           ],
-        //         ),
-        //         color: Colors.blueGrey,
-        //         shape: BoxShape.rectangle,
-        //         border:
-        //         Border(
-        //           bottom: BorderSide(
-        //             width: 4,
-        //             color: Colors.black,
-        //           ),
-        //         ),
-        //       ),
-        //     ),
-        //     Container(
-        //       width: 100,
-        //       height: 100,
-        //       decoration: BoxDecoration(
-        //         boxShadow: [BoxShadow(
-        //           color: Colors.black,
-        //           blurRadius: 3,
-        //           offset: Offset(4, 5),
-        //         ),],
-        //         gradient: RadialGradient(
-        //           center: Alignment.center,
-        //           colors: [
-        //             Colors.red,
-        //             Colors.orangeAccent,
-        //             Colors.yellowAccent
-        //           ],
-        //         ),
-        //         shape: BoxShape.circle,
-        //         border: Border.all(
-        //           width: 2,
-        //           color: Colors.red,
-        //         ),
-        //       ),
-        //     ),
-        //     Container(
-        //       width: 150,
-        //       height: 100,
-        //       decoration: BoxDecoration(
-        //         boxShadow: [BoxShadow(
-        //           color: Colors.black,
-        //           blurRadius: 3,
-        //           offset: Offset(4, 5),
-        //         ),],
-        //         gradient: LinearGradient( // Этот тип градиента является радиальным.
-        //           begin: Alignment.topLeft,
-        //           end: Alignment.bottomRight,
-        //           colors: [
-        //             Colors.teal,
-        //             Colors.green,
-        //             Colors.greenAccent,
-        //           ],
-        //         ),
-        //         borderRadius: BorderRadius.circular(30),
-        //         border: Border.all(
-        //           width: 2,
-        //           color: Colors.teal,
-        //         ),
-        //       ),
-        //     ),
-        //   ],
-        // ),
-        ),
-      );
+      ),
+    );
   }
 }
-
-
