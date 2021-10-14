@@ -23,133 +23,231 @@ class Lessons extends StatelessWidget {
           BottomNavigationBarItem(icon: Icon(Icons.search), label:"Поиск"),
         ],),
 
-        /// До сегодняшнего дня мы могли помещать в тело страницы только текст. Сегодня мы научимся создавать новый элемент - контейнер
-        /// Как следует из названия контейнер - это хранилище для чего либо. При этом он имеет определенные размеры, цвет, форму и т.д.
-        /// Рассмотрим виджет Container(), а также его свойства:
+        /// Итак, мы научились создавать контейнеры и стилизовать их. Но что,
+        /// если нам нужно расположить несколько контейнеров на одной странице?
+        /// С этим нам помогут позиционные виджеты. Начнем изучение с виджетов
+        /// Row() и Column(). Рассмотрим их по порядку:
 
-        body: Container(
+        body: Container( // Поместим виджет Row() в свойство child виджета
+          // Container().
+          // height: double.infinity, // Конструктор double.infinity позволяет
+          // задать максимально возможное число.
 
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text("Контейнер", style: TextStyle(color: Colors.white, fontSize: 30),),
-          ), /// Свойство, в которое помещается содержимое контейнера.
-          /// Принимает в себя различные виджеты. В примере в контейнер помещается текст.
+          child: Row( /// Виджет Row позволяет располагать несколько виджетов в
+            /// строку. Ширина строки определяется свободным пространством на
+            /// экране, а высота - высотой самого высокого виджета. Поэтому
+            /// горизонталь - это главная ось строки, а вертикаль - побочная.
+            /// Начинаются обе оси в левом верхнем углу экрана. Рассмотрим
+            /// свойства виджета Row():
 
-          width: 200, // Свойство, отвечающее за ширину контейнера. Принимает в себя вещественное число.
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly, /// Свойство,
+            /// отвечающее за расположение виджетов на главной оси. Принимает
+            /// в себя конструкторы MainAxisAlignment.
 
-          height: 130, // Свойство, отвечающее за высоту контейнера. Принимает в себя вещественное число.
+            crossAxisAlignment: CrossAxisAlignment.end, /// Свойство, отвечающее
+            /// за расположение виджетов на побочной оси. Принимает в себя
+            /// конструкторы CrossAxisAlignment.
 
-          // color: Colors.blueGrey, /// Свойство, отвечающее за цвет контейнера. Принимает в себя виджет Color(). Важно:
-          /// виджет BoxDecoration также имеет свойство color, поэтому если у нас имеется свойство decoration, но цвет
-          /// контейнера необходимо указывать именно внутри него.
+            mainAxisSize: MainAxisSize.min, // Свойство, определяющее занимаемое
+            // строкой место. Принимает в себя конструкторы MainAxisSize.
 
-          decoration: BoxDecoration( // Свойство, отвечающее за стилизацию контейнера. Принимает в себя виджет BoxDecoration().
+            children: [ // В свойство children передаются виджеты, помещаемые в
+              // строку. Возьмем для примера контейнеры из предыдущего урока.
 
-            boxShadow: [BoxShadow( // Свойство, отвечающее за добавление теней объекту. Принимает в себя виджеты BoxShadow().
+              Expanded( /// Виджет Expanded() позволяет распределять свободное
+                /// пространство между виджетами. Например, если поместить один
+                /// из виджетов в составе Row() в Expanded(), то он займет
+                /// все свободное пространство, при этом не искажая размер
+                /// виджетов, не помещенных в Expanded(). Но если в Expanded()
+                /// помещено несколько элементов, то пространство будет
+                /// распределяться пропорционально параметру flex, который
+                /// указан внутри виджета Expanded(). Рассмотрим пример:
 
-              color: Colors.black, // Свойство, отвечающее за цвет тени
+                flex: 1, /// Свойство, определяющее пропорциональную долю
+                /// пространства, занимаемую виджетом.
 
-              blurRadius: 5, // Свойство, задающее радиус размытия тени. Принимает в себя вецественное число.
-
-              offset: Offset(5, 5), // Свойство, отвечающее за смещение тени относительно объекта. Принимает в себя два числа: одно отвечает за смещение по горизонтали, другое - за смещение по вертикали.
-
-          ),],
-
-            // borderRadius: BorderRadius.circular(30), /// Свойство, отвечающее за скругление углов контейнера. Принимает в себя вещественное число.
-
-            gradient: LinearGradient( /// Свойство, отвечающее за нанесение градиента на контейнер. Принимает в себя различные виджеты, отвечающие
-              /// за форму градиента. В нашем примере градиент - линейный. Важно: если мы задаем градиент контейнеру, его свойство color уходит
-              /// на второй план.
-
-              begin: Alignment.centerLeft, // Свойство, указывающее начало градиента. Принимает в себя конструктор Alignment.
-
-              end: Alignment.centerRight, // Свойство, указывающее конец градиента. Принимает в себя конструктор Alignment.
-
-              colors: [ // Свойство, принимающие в себя перечень цветов. Цвета располагаются слева направо.
-
-                Colors.deepPurpleAccent,
-                Colors.blueAccent,
-                Colors.lightBlueAccent
-
-              ],
-
-            ),
-
-            color: Colors.blueGrey, // Свойство, отвечающее за цвет контейнера.
-
-            shape: BoxShape.rectangle, /// Свойствоб отвечающее за форму контейнера. Принимает в себя кнструкторы BoxShape(). В примере
-            /// приведен конструктро прямоугольной формы контейнера.
-
-            border:
-            // Border.all(width: 1.0, color:  Colors.black)
-            Border( // Свойство, добавляющее контуйнеру рамку. Принимает в себя виджет Border().
-
-              bottom: BorderSide( // Свойство, отвечающее за нижнюю границу контейнера. Принимает в себя виджет BorderSide().
-
-                width: 4, // Свойство, отвечающее за толщину рамки. Принимает в себя вещественное число.
-
-                color: Colors.black, // Свойство, отвечающее за цвет рамки. Принимает в себя виджет Color().
-
+                child: Container(
+                  width: 100,
+                  height: 150,
+                  decoration: BoxDecoration(
+                    boxShadow: [BoxShadow(
+                      color: Colors.black,
+                      blurRadius: 5,
+                      offset: Offset(5, 5),
+                  ),],
+                    gradient: LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [
+                        Colors.deepPurpleAccent,
+                        Colors.blueAccent,
+                        Colors.lightBlueAccent
+                      ],
+                    ),
+                    color: Colors.blueGrey,
+                    shape: BoxShape.rectangle,
+                    border:
+                    Border(
+                      bottom: BorderSide(
+                        width: 4,
+                        color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
+              ),
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                  width: 100,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    boxShadow: [BoxShadow(
+                      color: Colors.black,
+                      blurRadius: 3,
+                      offset: Offset(4, 5),
+                    ),],
+                    gradient: RadialGradient(
+                      center: Alignment.center,
+                      colors: [
+                        Colors.red,
+                        Colors.orangeAccent,
+                        Colors.yellowAccent
+                      ],
+                    ),
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      width: 2,
+                      color: Colors.red,
+                    ),
+                  ),
+              ),
+                ),
+                Container(
+                width: 150,
+                height: 100,
+                decoration: BoxDecoration(
+                  boxShadow: [BoxShadow(
+                    color: Colors.black,
+                    blurRadius: 3,
+                    offset: Offset(4, 5),
+                  ),],
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Colors.teal,
+                      Colors.green,
+                      Colors.greenAccent,
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(30),
+                  border: Border.all(
+                    width: 2,
+                    color: Colors.teal,
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
+        ),
 
-        /// Создадим еще один контейнер, и поэкспериментируем со свойствами:
+        // Теперь рассмотрим виджет Column():
 
-        // body: Container( // Свойство child не является обязательным, поэтому можно оставить контейнер пустым.
-        //   width: 100,
-        //   height: 100,
-        //   decoration: BoxDecoration(
-        //     boxShadow: [BoxShadow(
-        //       color: Colors.black,
-        //       blurRadius: 3,
-        //       offset: Offset(4, 5),
-        //     ),],
-        //     gradient: RadialGradient( // Этот тип градиента является радиальным.
-        //       center: Alignment.center,
-        //       colors: [
-        //         Colors.red,
-        //         Colors.orangeAccent,
-        //         Colors.yellowAccent
-        //       ],
-        //     ),
-        //     shape: BoxShape.circle, // Конструктор, создающий круглый контейнер.
-        //     border: Border.all( // В случае, если контейнер круглый, нам необходимо задавать рамку одинаковую со всех сторон, иначе может возникнуть ошибка.
-        //       width: 2,
-        //       color: Colors.red,
+        // body: Column( /// Виджет Row позволяет располагать несколько виджетов в колонку. Высота колонки определяется свободным пространством на экране,
+        //   /// а ширина - шириной самого широкого виджета. Поэтому вертикаль - это главная ось колонки, а горизонталь - побочная. Начинаются обе
+        //   /// оси в левом верхнем углу экрана. Рассмотрим свойства виджета Column():
+        //   ///
+        //   mainAxisAlignment: MainAxisAlignment.spaceEvenly, /// Свойство, отвечающее за расположение виджетов на главной оси. Принимает в себя
+        //   /// конструкторы MainAxisAlignment.
         //
-        //     ),
-        //   ),
-        // ),
-
-        // Рассмотрим еще один пример:
-
-        // body: Container(
-        //   width: 150,
-        //   height: 100,
-        //   decoration: BoxDecoration(
-        //     boxShadow: [BoxShadow(
-        //       color: Colors.black,
-        //       blurRadius: 3,
-        //       offset: Offset(4, 5),
-        //     ),],
-        //     gradient: LinearGradient( // Этот тип градиента является радиальным.
-        //       begin: Alignment.topLeft,
-        //       end: Alignment.bottomRight,
-        //       colors: [
-        //         Colors.teal,
-        //         Colors.green,
-        //         Colors.greenAccent,
-        //       ],
-        //     ),
-        //     borderRadius: BorderRadius.circular(30), // Скругление углов контейнера также требует установки одинаковых рамок со всех сторон.
-        //     border: Border.all( // В случае, если контейнер круглый, нам необходимо задавать рамку одинаковую со всех сторон, иначе может возникнуть ошибка.
-        //       width: 2,
-        //       color: Colors.teal,
+        //   crossAxisAlignment: CrossAxisAlignment.start, /// Свойство, отвечающее за расположение виджетов на побочной оси. Принимает в себя
+        //   /// конструкторы CrossAxisAlignment.
         //
+        //   children: [
+        //
+        //     Container(
+        //       child: Padding(
+        //         padding: const EdgeInsets.all(8.0),
+        //       ),
+        //       width: 100,
+        //       height: 150,
+        //       decoration: BoxDecoration(
+        //         boxShadow: [BoxShadow(
+        //           color: Colors.black,
+        //           blurRadius: 5,
+        //           offset: Offset(5, 5),
+        //         ),],
+        //         gradient: LinearGradient(
+        //           begin: Alignment.centerLeft,
+        //           end: Alignment.centerRight,
+        //           colors: [
+        //             Colors.deepPurpleAccent,
+        //             Colors.blueAccent,
+        //             Colors.lightBlueAccent
+        //           ],
+        //         ),
+        //         color: Colors.blueGrey,
+        //         shape: BoxShape.rectangle,
+        //         border:
+        //         Border(
+        //           bottom: BorderSide(
+        //             width: 4,
+        //             color: Colors.black,
+        //           ),
+        //         ),
+        //       ),
         //     ),
-        //   ),
+        //     Container(
+        //       width: 100,
+        //       height: 100,
+        //       decoration: BoxDecoration(
+        //         boxShadow: [BoxShadow(
+        //           color: Colors.black,
+        //           blurRadius: 3,
+        //           offset: Offset(4, 5),
+        //         ),],
+        //         gradient: RadialGradient(
+        //           center: Alignment.center,
+        //           colors: [
+        //             Colors.red,
+        //             Colors.orangeAccent,
+        //             Colors.yellowAccent
+        //           ],
+        //         ),
+        //         shape: BoxShape.circle,
+        //         border: Border.all(
+        //           width: 2,
+        //           color: Colors.red,
+        //         ),
+        //       ),
+        //     ),
+        //     Container(
+        //       width: 150,
+        //       height: 100,
+        //       decoration: BoxDecoration(
+        //         boxShadow: [BoxShadow(
+        //           color: Colors.black,
+        //           blurRadius: 3,
+        //           offset: Offset(4, 5),
+        //         ),],
+        //         gradient: LinearGradient( // Этот тип градиента является радиальным.
+        //           begin: Alignment.topLeft,
+        //           end: Alignment.bottomRight,
+        //           colors: [
+        //             Colors.teal,
+        //             Colors.green,
+        //             Colors.greenAccent,
+        //           ],
+        //         ),
+        //         borderRadius: BorderRadius.circular(30),
+        //         border: Border.all(
+        //           width: 2,
+        //           color: Colors.teal,
+        //         ),
+        //       ),
+        //     ),
+        //   ],
         // ),
         ),
       );
