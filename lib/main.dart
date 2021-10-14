@@ -39,27 +39,27 @@ class Lessons extends StatelessWidget {
         //
         //     style: TextStyle(
         //       // Свойство, отвечающее за стиль текста. Принимает в себя виджет TextStyle().
-        //        fontFamily: "Avara",
-        //      //fontFamily: "Crystal",
+        //       // fontFamily: "Avara",
+        //      fontFamily: "Crystal",
         //
-        //       fontSize: 42,
+        //       fontSize: 48,
         //       // Свойство, отвечающее за размер шрифта. Принимает в себя вещественное число.
         //
-        //       fontWeight: FontWeight.w900,
+        //       fontWeight: FontWeight.w700,
         //       // Свойство, отвечающее за толщину текста. Принимает в себя конструкторы
         //       // FontWeight.
         //
-        //       fontStyle: FontStyle.normal,
+        //       fontStyle: FontStyle.italic,
         //       // Свойство, отвечающее за стиль текста. Принимает в себя конструкторы
         //       // FontStyle.
         //
-        //       decoration: TextDecoration.underline,
-        //       decorationColor: Color(0xFF39336D),
-        //       decorationThickness: 3,
+        //       decoration: TextDecoration.lineThrough,
+        //       decorationColor: Color(0x741C6239),
+        //       decorationThickness: 5,
         //       // Свойство, отвечающее за декорирование текста. Принимает в себя
         //       // конструкторы TextDecoration.
         //
-        //       color: Color(0xFFB7A819), // Свойство, отвечающее за цвет текста.
+        //       color: Color(0xFFB05572), // Свойство, отвечающее за цвет текста.
         //       // Принимает в себя цветовые виджеты.
         //     ),
         //   ),
@@ -83,7 +83,7 @@ class Lessons extends StatelessWidget {
                 fontSize: 36,
                 fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.italic,
-                decoration: TextDecoration.underline,
+                decoration: TextDecoration.lineThrough,
                 color: Colors.deepPurple,
               ),
               children: [
@@ -109,7 +109,7 @@ class Lessons extends StatelessWidget {
                 ),
 
                 TextSpan(
-                  text: "World",
+                  text: "World !!!",
                    style: TextStyle(
                      color: Colors.blueGrey,
                      fontStyle: FontStyle.normal,// Изменим цвет текста
@@ -118,18 +118,7 @@ class Lessons extends StatelessWidget {
 
                   //     на синий.
                 ),
-                TextSpan(
-                  text: "!!!",
-                  style: TextStyle(
-                      color: Colors.blue,
-                      fontStyle: FontStyle.normal,
-                      fontSize: 24,
-                      decoration: TextDecoration.none),
 
-                  /// Изменим цвет
-                  //    на синий, уиерем курсив и подчеркивание, а также увеличиваем
-                  ///размер шрифта
-                ),
               ],
             ),
           ),

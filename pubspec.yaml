@@ -62,7 +62,7 @@ flutter:
 
   fonts:
     - family: Avara
-      fonts:
+     fonts:
         - asset: assets/fonts/Avara.ttf
     - family: Crystal
       fonts:
