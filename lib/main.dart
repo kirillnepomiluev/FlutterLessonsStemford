@@ -12,83 +12,148 @@ class Lessons extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Урок 21",
+          title: Text("Урок 22",
           ),
           backgroundColor: Colors.blueAccent,
         ),
         backgroundColor: Colors.white,
-        floatingActionButton: FloatingActionButton(onPressed: () {},),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         bottomNavigationBar: BottomNavigationBar(items: [
           BottomNavigationBarItem(icon: Icon(Icons.account_box) , label: "Аккаунт"),
           BottomNavigationBarItem(icon: Icon(Icons.edit), label: "Редактор"),
           BottomNavigationBarItem(icon: Icon(Icons.search), label:"Поиск"),
         ],),
-        body: Text(
 
-            "Hello World!!!", // Есть много способов декорировать текста. Универсальный виджет, отвечающий за стилизацию текстаявляется виджет TextStyle(), передаваемый в свойство style/.
+        /// До сегодняшнего дня мы могли помещать в тело страницы только текст. Сегодня мы научимся создавать новый элемент - контейнер
+        /// Как следует из названия контейнер - это хранилище для чего либо. При этом он имеет определенные размеры, цвет, форму и т.д.
+        /// Рассмотрим виджет Container(), а также его свойства:
 
-                style: TextStyle( // Свойство, отвечающее за стиль текста. Принимает в себя виджет TextStyle().
+        body: Container(
 
-                     fontSize: 30, // Свойство, отвечающее за размер шрифта. Принимает в себя вещественное число.
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("Контейнер", style: TextStyle(color: Colors.white, fontSize: 30),),
+          ), /// Свойство, в которое помещается содержимое контейнера.
+          /// Принимает в себя различные виджеты. В примере в контейнер помещается текст.
 
-                     fontWeight: FontWeight.bold, // Свойство, отвечающее за толщину текста. Принимает в себя конструкторы FontWeight.
+          width: 200, // Свойство, отвечающее за ширину контейнера. Принимает в себя вещественное число.
 
-                     fontStyle: FontStyle.italic, // Свойство, отвечающее за стиль текста. Принимает в себя конструкторы FontStyle.
+          height: 130, // Свойство, отвечающее за высоту контейнера. Принимает в себя вещественное число.
 
-                     decoration: TextDecoration.underline, // Свойство, отвечающее за декорирование текста. Принимает в себя конструкторы TextDecoration.
+          // color: Colors.blueGrey, /// Свойство, отвечающее за цвет контейнера. Принимает в себя виджет Color(). Важно:
+          /// виджет BoxDecoration также имеет свойство color, поэтому если у нас имеется свойство decoration, но цвет
+          /// контейнера необходимо указывать именно внутри него.
 
-                     color: Colors.deepPurple, // Свойство, отвечающее за цвет текста. Принимает в себя цветовые виджеты.
+          decoration: BoxDecoration( // Свойство, отвечающее за стилизацию контейнера. Принимает в себя виджет BoxDecoration().
 
+            boxShadow: [BoxShadow( // Свойство, отвечающее за добавление теней объекту. Принимает в себя виджеты BoxShadow().
+
+              color: Colors.black, // Свойство, отвечающее за цвет тени
+
+              blurRadius: 5, // Свойство, задающее радиус размытия тени. Принимает в себя вецественное число.
+
+              offset: Offset(5, 5), // Свойство, отвечающее за смещение тени относительно объекта. Принимает в себя два числа: одно отвечает за смещение по горизонтали, другое - за смещение по вертикали.
+
+          ),],
+
+            // borderRadius: BorderRadius.circular(30), /// Свойство, отвечающее за скругление углов контейнера. Принимает в себя вещественное число.
+
+            gradient: LinearGradient( /// Свойство, отвечающее за нанесение градиента на контейнер. Принимает в себя различные виджеты, отвечающие
+              /// за форму градиента. В нашем примере градиент - линейный. Важно: если мы задаем градиент контейнеру, его свойство color уходит
+              /// на второй план.
+
+              begin: Alignment.centerLeft, // Свойство, указывающее начало градиента. Принимает в себя конструктор Alignment.
+
+              end: Alignment.centerRight, // Свойство, указывающее конец градиента. Принимает в себя конструктор Alignment.
+
+              colors: [ // Свойство, принимающие в себя перечень цветов. Цвета располагаются слева направо.
+
+                Colors.deepPurpleAccent,
+                Colors.blueAccent,
+                Colors.lightBlueAccent
+
+              ],
+
+            ),
+
+            color: Colors.blueGrey, // Свойство, отвечающее за цвет контейнера.
+
+            shape: BoxShape.rectangle, /// Свойствоб отвечающее за форму контейнера. Принимает в себя кнструкторы BoxShape(). В примере
+            /// приведен конструктро прямоугольной формы контейнера.
+
+            border:
+            // Border.all(width: 1.0, color:  Colors.black)
+            Border( // Свойство, добавляющее контуйнеру рамку. Принимает в себя виджет Border().
+
+              bottom: BorderSide( // Свойство, отвечающее за нижнюю границу контейнера. Принимает в себя виджет BorderSide().
+
+                width: 4, // Свойство, отвечающее за толщину рамки. Принимает в себя вещественное число.
+
+                color: Colors.black, // Свойство, отвечающее за цвет рамки. Принимает в себя виджет Color().
+
+                ),
+              ),
+            ),
           ),
-        ),
 
+        /// Создадим еще один контейнер, и поэкспериментируем со свойствами:
 
-
-
-        // body: RichText( /// В предыдущем примере мы научились декорировать текст. Однако, стиль текста распространялся на весь текст. Что
-        //   /// если нам нужно стилизовать отдельный участок текста? Для этого существует виджет RichText(). Он позволяет нам разбить текст на участки, и
-        //   /// задавать стиль для каждого из них индивидуально.
-        //
-        //   text: TextSpan(// Свойство, в которое помещается виджет TextSpan(), содержащий фрагмент текста и его стиль.
-        //
-        //     style: TextStyle( // Сюда мы поместим стиль текста по умолчанию.
-        //       fontSize: 30,
-        //       fontWeight: FontWeight.bold,
-        //       fontStyle: FontStyle.italic,
-        //       decoration: TextDecoration.underline,
-        //       color: Colors.deepPurple,
+        // body: Container( // Свойство child не является обязательным, поэтому можно оставить контейнер пустым.
+        //   width: 100,
+        //   height: 100,
+        //   decoration: BoxDecoration(
+        //     boxShadow: [BoxShadow(
+        //       color: Colors.black,
+        //       blurRadius: 3,
+        //       offset: Offset(4, 5),
+        //     ),],
+        //     gradient: RadialGradient( // Этот тип градиента является радиальным.
+        //       center: Alignment.center,
+        //       colors: [
+        //         Colors.red,
+        //         Colors.orangeAccent,
+        //         Colors.yellowAccent
+        //       ],
         //     ),
-        //     children: [ /// Свойство children содержит в себе дочерние виджеты. При этом дочерние виджеты помещаются в квадратные скобки.
-        //       /// Теперь внутрь свойства children мы передадим еще несколько вилдетов TextSpan(), в которых будут содержаться отдельные
-        //       /// фрагменты текста, и стили для них. Если же мы не зададим для них уникальный стил, то они примут параметры, указанные
-        //       /// выше.
+        //     shape: BoxShape.circle, // Конструктор, создающий круглый контейнер.
+        //     border: Border.all( // В случае, если контейнер круглый, нам необходимо задавать рамку одинаковую со всех сторон, иначе может возникнуть ошибка.
+        //       width: 2,
+        //       color: Colors.red,
         //
-        //       TextSpan( // Первый TextSpan будет содержать слово Hello .
-        //
-        //         text: "Hello ", // Здесь в свойство text мы уже передаем непосредственно текст, над которым будут произвоодиться изменения.
-        //
-        //         style: TextStyle(fontWeight: FontWeight.normal, color: Colors.black, decoration: TextDecoration.none), // Сделаем текст нормальной толщины, изменим цвет на черный и уберем нижнее подчеркивание.
-        //
-        //       ),
-        //
-        //       TextSpan(
-        //         text: "World",
-        //         style: TextStyle(color: Colors.blueGrey), // Изменим цвет текста на синий.
-        //
-        //       ),
-        //
-        //       TextSpan(
-        //         text: "!!!",
-        //         style: TextStyle(color: Colors.blue, fontStyle: FontStyle.normal, fontSize: 35, decoration: TextDecoration.none), /// Изменим цвет на синий, уиерем курсив и подчеркивание, а также увеличиваем
-        //         ///размер шрифта
-        //       ),
-        //     ],
+        //     ),
         //   ),
         // ),
-      ),
-    );
+
+        // Рассмотрим еще один пример:
+
+        // body: Container(
+        //   width: 150,
+        //   height: 100,
+        //   decoration: BoxDecoration(
+        //     boxShadow: [BoxShadow(
+        //       color: Colors.black,
+        //       blurRadius: 3,
+        //       offset: Offset(4, 5),
+        //     ),],
+        //     gradient: LinearGradient( // Этот тип градиента является радиальным.
+        //       begin: Alignment.topLeft,
+        //       end: Alignment.bottomRight,
+        //       colors: [
+        //         Colors.teal,
+        //         Colors.green,
+        //         Colors.greenAccent,
+        //       ],
+        //     ),
+        //     borderRadius: BorderRadius.circular(30), // Скругление углов контейнера также требует установки одинаковых рамок со всех сторон.
+        //     border: Border.all( // В случае, если контейнер круглый, нам необходимо задавать рамку одинаковую со всех сторон, иначе может возникнуть ошибка.
+        //       width: 2,
+        //       color: Colors.teal,
+        //
+        //     ),
+        //   ),
+        // ),
+        ),
+      );
   }
 }
 
-/// В дальнейшем мы познакомимся подробнее с каждым из этих элементов.
+
