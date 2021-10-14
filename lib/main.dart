@@ -10,14 +10,14 @@ class Lessons extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text(
-            "Урок 22",
+          title: const Text(
+            "Урок 24",
           ),
           backgroundColor: Colors.blueAccent,
         ),
         backgroundColor: Colors.white,
         bottomNavigationBar: BottomNavigationBar(
-          items: [
+          items: const [
             BottomNavigationBarItem(icon: Icon(Icons.account_box), label: "Аккаунт"),
             BottomNavigationBarItem(icon: Icon(Icons.edit), label: "Редактор"),
             BottomNavigationBarItem(icon: Icon(Icons.search), label: "Поиск"),
@@ -39,201 +39,205 @@ class Lessons extends StatelessWidget {
           alignment: Alignment.center, /// Свойство, определяющее положение
           /// дочернего виджета. Принимает в себя конструкторы Alignment.
 
-          child: Stack(
-            /// Виджет Stack() позволяет накладывать виджеты один на
-            /// другой. При этом наложение будет происходить в порядке введения
-            /// виджетов: самый первый будет снизу, далее - второй и т.д. Размер
-            /// определяется максимальными размерами дочерних элементов.
-            /// Рассмотрим свойства:
+          child: Container(
+            width: 340,
+            height: 340,
+            child: Stack(
+              /// Виджет Stack() позволяет накладывать виджеты один на
+              /// другой. При этом наложение будет происходить в порядке введения
+              /// виджетов: самый первый будет снизу, далее - второй и т.д. Размер
+              /// определяется максимальными размерами дочерних элементов.
+              /// Рассмотрим свойства:
 
-            alignment: Alignment.center, // Одно из свойств, отвечающее за
-            // позиционирование виджетов. Принимает в себя конструкторы Alignment.
-            // Далее мы подробнее познакомимся с виджетом Alignment().
+              alignment: Alignment.center, // Одно из свойств, отвечающее за
+              // позиционирование виджетов. Принимает в себя конструкторы Alignment.
+              // Далее мы подробнее познакомимся с виджетом Alignment().
 
-            children: [
-              // В свойство children передаются виджеты, помещаемые в
-              // строку. Возьмем для примера контейнеры из предыдущего урока.
+              children: [
+                // В свойство children передаются виджеты, помещаемые в
+                // строку. Возьмем для примера контейнеры из предыдущего урока.
 
-              /// Для того, чтобы самостоятельно задать расположение виджетам в
-              /// стэке, необходимо обернуть каждый его элемент в виджет
-              /// Positioned()
+                /// Для того, чтобы самостоятельно задать расположение виджетам в
+                /// стэке, необходимо обернуть каждый его элемент в виджет
+                /// Positioned()
 
-              Container(
-                width: 300,
-                height: 300,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black,
-                      blurRadius: 5,
-                      offset: Offset(5, 5),
-                    ),
-                  ],
-                  gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: [
-                      Colors.deepPurpleAccent,
-                      Colors.blueAccent,
-                      Colors.lightBlueAccent
-                    ],
-                  ),
-                  color: Colors.blueGrey,
-                  shape: BoxShape.rectangle,
-                  border: Border(
-                    bottom: BorderSide(
-                      width: 4,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-
-              Positioned( // Виджет, позволяющий задавать положение виджета вручную.
-
-                left: 10, // Свойство, отвечающее за отступ слева от края стэка.
-
-                top: 30, // Свойство, отвечающее за отступ сверху от края стэка.
-
-                // right: 10, // Свойство, отвечающее за отступ справа от края стэка.
-
-                // bottom: 10, // Свойство, отвечающее за отступ снизу от края стэка.
-
-                width: 60, /// Свойство, задающее ширину объекта. Срабатывает даже
-                /// если у объекта имеется свой заданый размер
-
-                height: 60, /// Свойство, задающее ширину объекта. Срабатывает даже
-                /// если у объекта имеется свой заданый размер
-
-                child: Container(
-                  width: 200,
-                  height: 200,
-                  decoration: BoxDecoration(
+                Container(
+                  width: 340,
+                  height: 340,
+                  decoration: const BoxDecoration(
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black,
-                        blurRadius: 3,
-                        offset: Offset(4, 5),
+                        blurRadius: 5,
+                        offset: Offset(5, 5),
                       ),
                     ],
                     gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
                       colors: [
-                        Colors.teal,
-                        Colors.green,
-                        Colors.greenAccent,
+                        Colors.deepPurpleAccent,
+                        Colors.blueAccent,
+                        Colors.lightBlueAccent
                       ],
                     ),
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      width: 2,
-                      color: Colors.teal,
+                    color: Colors.blueGrey,
+                    shape: BoxShape.rectangle,
+                    border: Border(
+                      bottom: BorderSide(
+                        width: 4,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Container(
-                width: 100,
-                height: 100,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black,
-                      blurRadius: 3,
-                      offset: Offset(4, 5),
-                    ),
-                  ],
-                  gradient: RadialGradient(
-                    center: Alignment.center,
-                    colors: [
-                      Colors.red,
-                      Colors.orangeAccent,
-                      Colors.yellowAccent
-                    ],
-                  ),
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    width: 2,
-                    color: Colors.red,
-                  ),
-                ),
-              ),
-              Positioned(
-                right: 0,
-                top: 0,
 
-                /// Мы добавили в стэк еще один контейнер, и задали ему положение:
-                /// он должен находиться в верхнем правом углу.
+                Align( // Виджет, позволяющий задавать положение виджета вручную.
+                    alignment: Alignment.centerRight,
+                  // left: 10, // Свойство, отвечающее за отступ слева от края стэка.
+                  //
+                  // top: 30, // Свойство, отвечающее за отступ сверху от края стэка.
+                  //
+                  // // right: 10, // Свойство, отвечающее за отступ справа от края стэка.
+                  //
+                  // // bottom: 10, // Свойство, отвечающее за отступ снизу от края стэка.
+                  //
+                  // width: 220, /// Свойство, задающее ширину объекта. Срабатывает даже
+                  // /// если у объекта имеется свой заданый размер
+                  //
+                  // height: 60, /// Свойство, задающее ширину объекта. Срабатывает даже
+                  /// если у объекта имеется свой заданый размер
 
-                child: Padding( /// Виджет Padding() создает отступы от границ
-                  /// дочернего виджета.
-
-                  padding: EdgeInsets.all(20), /// В свойство padding помещается
-                  /// конструктор, отвечающий за характер отступа. В примере был
-                  /// использован конструктор EdgeInserts.all(), который создает
-                  /// равные отступы со всех сторон от дочернего виджета. Также
-                  /// есть конструктор EdgeInserts.symmetric(), содержащий два
-                  /// параметра - horizontal (отступ симметрично по горизонтали)
-                  /// и vertical (отступ симметрично по вертикали). Также есть
-                  /// конструктор EdgeInserts.only(), в котором четыре параметра:
-                  /// bottom, top, left, right.
-
-                  child: Container( /// Мы мидим, что несмотря на то, что контейнер
-                    /// должен был оказаться втлевом верхнем углу, он имеет отступы
-                    /// от края стэка, которые задаются виджетом Padding().
-
-                    width: 100,
-                    height: 100,
+                  child: Container(
+                    width: 300,
+                    height: 200,
                     decoration: BoxDecoration(
-                      color: Colors.pink,
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           color: Colors.black,
                           blurRadius: 3,
                           offset: Offset(4, 5),
                         ),
                       ],
-                      shape: BoxShape.circle,
+                      gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Colors.teal,
+                          Colors.green,
+                          Colors.greenAccent,
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(10),
                       border: Border.all(
                         width: 2,
-                        color: Colors.red,
+                        color: Colors.teal,
                       ),
                     ),
                   ),
                 ),
-              ),
-              Positioned(
-                  bottom: 0,
-                  left: 0,
-                  child: Padding(
-                    padding:  EdgeInsets.only(bottom: 10, left: 10),
+                Container(
+                  width: 250,
+                  height: 250,
+                  decoration: BoxDecoration(
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black,
+                        blurRadius: 3,
+                        offset: Offset(4, 5),
+                      ),
+                    ],
+                    gradient: const RadialGradient(
+                      center: Alignment.center,
+                      colors: [
+                        Colors.red,
+                        Colors.orangeAccent,
+                        Colors.yellowAccent
+                      ],
+                    ),
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      width: 2,
+                      color: Colors.red,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  right: 0,
+                  top: 0,
 
-                    child: SizedBox( /// С помощью виджета SizedBox() можно задать
-                      /// размеры дочернему виджету, даже при условии, что у
-                      /// него не свойств, отвечающих за его размеры.
+                  /// Мы добавили в стэк еще один контейнер, и задали ему положение:
+                  /// он должен находиться в верхнем правом углу.
 
-                      width: 100, // Поле, задающее ширину.
+                  child: Padding( /// Виджет Padding() создает отступы от границ
+                    /// дочернего виджета.
 
-                      height: 60, // Поле, задающее высоту.
+                    padding: const EdgeInsets.all(20), /// В свойство padding помещается
+                    /// конструктор, отвечающий за характер отступа. В примере был
+                    /// использован конструктор EdgeInserts.all(), который создает
+                    /// равные отступы со всех сторон от дочернего виджета. Также
+                    /// есть конструктор EdgeInserts.symmetric(), содержащий два
+                    /// параметра - horizontal (отступ симметрично по горизонтали)
+                    /// и vertical (отступ симметрично по вертикали). Также есть
+                    /// конструктор EdgeInserts.only(), в котором четыре параметра:
+                    /// bottom, top, left, right.
 
-                      child: Container(
-                        decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black,
-                              blurRadius: 3,
-                              offset: Offset(4, 5),
-                            ),
-                          ],
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white
+                    child: Container( /// Мы мидим, что несмотря на то, что контейнер
+                      /// должен был оказаться втлевом верхнем углу, он имеет отступы
+                      /// от края стэка, которые задаются виджетом Padding().
+
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        color: Colors.pink,
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black,
+                            blurRadius: 3,
+                            offset: Offset(4, 5),
+                          ),
+                        ],
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          width: 2,
+                          color: Colors.red,
                         ),
                       ),
                     ),
                   ),
-              ),
-            ],
+                ),
+                Positioned(
+                    bottom: 0,
+                    left: 0,
+                    child: Padding(
+                      padding:  const EdgeInsets.only(bottom: 10, left: 10),
+
+                      child: SizedBox( /// С помощью виджета SizedBox() можно задать
+                        /// размеры дочернему виджету, даже при условии, что у
+                        /// него не свойств, отвечающих за его размеры.
+
+                        width: 100, // Поле, задающее ширину.
+
+                        height: 60, // Поле, задающее высоту.
+
+                        child: Container(
+                          decoration: BoxDecoration(
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black,
+                                blurRadius: 3,
+                                offset: Offset(4, 5),
+                              ),
+                            ],
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white
+                          ),
+                        ),
+                      ),
+                    ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
