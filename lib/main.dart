@@ -1,54 +1,80 @@
-import 'package:flutter/material.dart'; // Импорт библиотеки, содержащей основные инструменты flutter - виджеты.
+import 'package:flutter/material.dart'; // Импорт библиотеки, содержащей основные
+// инструменты flutter - виджеты.
 
 /// Виджет - это физуальные и функциональные компоненты, из которых состоит приложение.
 /// Все элементы в flutter являются виджетами.
 
 void main() => runApp(Lessons());
 
-class Lessons extends StatelessWidget { /// StatelessWidget() - это абстрактный класс
-/// который отвечает за создание статичного виджета. Статичный виджет - это виджет,
-/// который не будет менять своего состояния (например картинка, иконка, текст).
+class Lessons extends StatelessWidget {
+  /// StatelessWidget() - это абстрактный класс
+  /// который отвечает за создание статичного виджета. Статичный виджет - это виджет,
+  /// который не будет менять своего состояния (например картинка, иконка, текст).
 
   @override
   Widget build(BuildContext context) {
+    return MaterialApp(
+      // Высокоуровневый виджет, отвечающий за создание графического интерфейса
+      // приложения в стиле Material Design.
 
-    return MaterialApp( // Высокоуровневый виджет, отвечающий за создание графического интерфейса приложения в стиле Material Design.
+      title: "Название приложения",
+      // В свойство title передается название приложения, которое будет
+      // отображаться в названии страницы. Принимает в себя строку.
 
-      title: "Название приложения", // В свойство title передается название приложения, которое будет отображаться в названии страницы. Принимает в себя строку.
+      home: Scaffold(
+        // Высокоуровневый виджет, создающий шаблон страницы в стиле Material Design.
 
-      home: Scaffold( // Высокоуровневый виджет, создающий шаблон страницы в стиле Material Design.
+        appBar: AppBar(
+          // Свойство, отвечающее за наличие верхнего меню - аппбара. Принимает
+          // в себя виджет AppBar().
 
-        appBar: AppBar( // Свойство, отвечающее за наличие верхнего меню - аппбара. Принимает в себя виджет AppBar().
+          centerTitle: true,
+          // Свойство, отвечающее за расположение заголовка аппбара по центру.
+          // Принимает в себя true или false.
 
-          centerTitle: true, // Свойство, отвечающее за расположение заголовка аппбара по центру. Принимает в себя true или false.
-
-          title: Text("Урок 20", // Свойство, отвечающее за заголовок аппбара. Принимает в себя строку с текстом заголовка.
-
+          title: Text(
+            "Урок 20", // Свойство, отвечающее за заголовок аппбара. Принимает
+            // в себя строку с текстом заголовка.
           ),
 
-          backgroundColor: Colors.blueAccent, // Свойство, отвечающее за цвет аппбара. Принимает в себя виджет, содержащий цвет.
-
+          backgroundColor: Colors
+              .blueAccent, // Свойство, отвечающее за цвет аппбара. Принимает
+          // в себя виджет, содержащий цвет.
         ),
 
-        backgroundColor: Colors.white, // Свойство, отвечающее за цвет самой страницы.
+        backgroundColor: Colors.white,
+        // Свойство, отвечающее за цвет самой страницы.
 
-        floatingActionButton: FloatingActionButton(onPressed: () {},), // Свойство, отвечающее за добавление кнопки. Принимает в себя виджет FloatingActionButton().
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+        ),
+        // Свойство, отвечающее за добавление кнопки. Принимает в себя виджет
+        // FloatingActionButton().
 
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat, // Свойство, отвечающее за расположение кнопки на экране. Имеет различные конструкторы.
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        // Свойство, отвечающее за расположение кнопки на экране. Имеет
+        // различные конструкторы.
 
-        bottomNavigationBar: BottomNavigationBar(items: [ // Свойство, отвечающее за добавление нижней навигационной панели.
+        bottomNavigationBar: BottomNavigationBar(
+          items: [
+            // Свойство, отвечающее за добавление нижней навигационной панели.
 
-          BottomNavigationBarItem(icon: Icon(Icons.account_box) , label: "Аккаунт"), // Элементы навигационной панели.
+            BottomNavigationBarItem(
+                icon: Icon(Icons.account_box), label: "Аккаунт"),
+            // Элементы навигационной панели.
 
-          BottomNavigationBarItem(icon: Icon(Icons.edit), label: "Редактор"),
+            BottomNavigationBarItem(icon: Icon(Icons.edit), label: "Редактор"),
 
-          BottomNavigationBarItem(icon: Icon(Icons.search), label:"Поиск"),
+            BottomNavigationBarItem(icon: Icon(Icons.search), label: "Поиск"),
+          ],
+        ),
+        body: Text(
+          // Свойство, содержащее в себе тело страницы. Принимает в себя
+          // различные виджеты. Для примера, в поместим сюда виджет Text().
 
-        ],),
-        body: Text( // Свойство, содержащее в себе тело страницы. Принимает в себя различные виджеты. Для примера, в поместим сюда виджет Text().
-
-          "План урока:\n1) Понятие StatelessWidget()\n2) Виджет MaterialApp()\n3) Виджет Scaffold()\n4) Виджет Text()\n5) Виджет TextStyle()\n6) Виджет Color()",
-
+          "План урока:\n1) Понятие StatelessWidget()\n2) Виджет MaterialApp()\n3)"
+              " Виджет Scaffold()\n4) Виджет Text()\n5) Виджет TextStyle()\n6)"
+              " Виджет Color()",
         ), // Свойство, содержащее в себе тело страницы. Принимает в себя различные виджеты. Для примера, в поместим сюда виджет Text().
       ),
     );
