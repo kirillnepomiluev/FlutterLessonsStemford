@@ -1,55 +1,91 @@
-import 'package:flutter/material.dart'; // Импорт библиотеки, содержащей основные инструменты flutter - виджеты.
-
-/// Виджет - это физуальные и функциональные компоненты, из которых состоит приложение.
-/// Все элементы в flutter являются виджетами.
+import 'package:flutter/material.dart';
 
 void main() => runApp(Lessons());
 
-class Lessons extends StatelessWidget { /// StatelessWidget() - это абстрактный класс
-/// который отвечает за создание статичного виджета. Статичный виджет - это виджет,
-/// который не будет менять своего состояния (например картинка, иконка, текст).
+class Lessons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
 
-    return MaterialApp( // Высокоуровневый виджет, отвечающий за создание графического интерфейса приложения в стиле Material Design.
+    return MaterialApp(
+      title: "Уроки Flutter",
+      home: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text("Урок 21",
+          ),
+          backgroundColor: Colors.blueAccent,
+        ),
+        backgroundColor: Colors.white,
+        floatingActionButton: FloatingActionButton(onPressed: () {},),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        bottomNavigationBar: BottomNavigationBar(items: [
+          BottomNavigationBarItem(icon: Icon(Icons.account_box) , label: "Аккаунт"),
+          BottomNavigationBarItem(icon: Icon(Icons.edit), label: "Редактор"),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label:"Поиск"),
+        ],),
+        body: Text(
 
-      title: "Название приложения", // В свойство title передается название приложения, которое будет отображаться в названии страницы. Принимает в себя строку.
+            "Hello World!!!", // Есть много способов декорировать текста. Универсальный виджет, отвечающий за стилизацию текстаявляется виджет TextStyle(), передаваемый в свойство style/.
 
-      home: Scaffold( // Высокоуровневый виджет, создающий шаблон страницы в стиле Material Design.
+                style: TextStyle( // Свойство, отвечающее за стиль текста. Принимает в себя виджет TextStyle().
 
-        appBar: AppBar( // Свойство, отвечающее за наличие верхнего меню - аппбара. Принимает в себя виджет AppBar().
+                     fontSize: 30, // Свойство, отвечающее за размер шрифта. Принимает в себя вещественное число.
 
-          centerTitle: true, // Свойство, отвечающее за расположение заголовка аппбара по центру. Принимает в себя true или false.
+                     fontWeight: FontWeight.bold, // Свойство, отвечающее за толщину текста. Принимает в себя конструкторы FontWeight.
 
-          title: Text("Урок 20", // Свойство, отвечающее за заголовок аппбара. Принимает в себя строку с текстом заголовка.
+                     fontStyle: FontStyle.italic, // Свойство, отвечающее за стиль текста. Принимает в себя конструкторы FontStyle.
+
+                     decoration: TextDecoration.underline, // Свойство, отвечающее за декорирование текста. Принимает в себя конструкторы TextDecoration.
+
+                     color: Colors.deepPurple, // Свойство, отвечающее за цвет текста. Принимает в себя цветовые виджеты.
 
           ),
-
-          backgroundColor: Colors.blueAccent, // Свойство, отвечающее за цвет аппбара. Принимает в себя виджет, содержащий цвет.
-
         ),
 
-        backgroundColor: Colors.white, // Свойство, отвечающее за цвет самой страницы.
 
-        floatingActionButton: FloatingActionButton(onPressed: () {},), // Свойство, отвечающее за добавление кнопки. Принимает в себя виджет FloatingActionButton().
 
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat, // Свойство, отвечающее за расположение кнопки на экране. Имеет различные конструкторы.
 
-        bottomNavigationBar: BottomNavigationBar(items: [ // Свойство, отвечающее за добавление нижней навигационной панели.
-
-          BottomNavigationBarItem(icon: Icon(Icons.account_box) , label: "Аккаунт"), // Элементы навигационной панели.
-
-          BottomNavigationBarItem(icon: Icon(Icons.edit), label: "Редактор"),
-
-          BottomNavigationBarItem(icon: Icon(Icons.search), label:"Поиск"),
-
-        ],),
-        body: Text( // Свойство, содержащее в себе тело страницы. Принимает в себя различные виджеты. Для примера, в поместим сюда виджет Text().
-
-          "План урока:\n1) Понятие StatelessWidget()\n2) Виджет MaterialApp()\n3) Виджет Scaffold()\n4) Виджет Text()\n5) Виджет TextStyle()\n6) Виджет Color()",
-
-        ), // Свойство, содержащее в себе тело страницы. Принимает в себя различные виджеты. Для примера, в поместим сюда виджет Text().
+        // body: RichText( /// В предыдущем примере мы научились декорировать текст. Однако, стиль текста распространялся на весь текст. Что
+        //   /// если нам нужно стилизовать отдельный участок текста? Для этого существует виджет RichText(). Он позволяет нам разбить текст на участки, и
+        //   /// задавать стиль для каждого из них индивидуально.
+        //
+        //   text: TextSpan(// Свойство, в которое помещается виджет TextSpan(), содержащий фрагмент текста и его стиль.
+        //
+        //     style: TextStyle( // Сюда мы поместим стиль текста по умолчанию.
+        //       fontSize: 30,
+        //       fontWeight: FontWeight.bold,
+        //       fontStyle: FontStyle.italic,
+        //       decoration: TextDecoration.underline,
+        //       color: Colors.deepPurple,
+        //     ),
+        //     children: [ /// Свойство children содержит в себе дочерние виджеты. При этом дочерние виджеты помещаются в квадратные скобки.
+        //       /// Теперь внутрь свойства children мы передадим еще несколько вилдетов TextSpan(), в которых будут содержаться отдельные
+        //       /// фрагменты текста, и стили для них. Если же мы не зададим для них уникальный стил, то они примут параметры, указанные
+        //       /// выше.
+        //
+        //       TextSpan( // Первый TextSpan будет содержать слово Hello .
+        //
+        //         text: "Hello ", // Здесь в свойство text мы уже передаем непосредственно текст, над которым будут произвоодиться изменения.
+        //
+        //         style: TextStyle(fontWeight: FontWeight.normal, color: Colors.black, decoration: TextDecoration.none), // Сделаем текст нормальной толщины, изменим цвет на черный и уберем нижнее подчеркивание.
+        //
+        //       ),
+        //
+        //       TextSpan(
+        //         text: "World",
+        //         style: TextStyle(color: Colors.blueGrey), // Изменим цвет текста на синий.
+        //
+        //       ),
+        //
+        //       TextSpan(
+        //         text: "!!!",
+        //         style: TextStyle(color: Colors.blue, fontStyle: FontStyle.normal, fontSize: 35, decoration: TextDecoration.none), /// Изменим цвет на синий, уиерем курсив и подчеркивание, а также увеличиваем
+        //         ///размер шрифта
+        //       ),
+        //     ],
+        //   ),
+        // ),
       ),
     );
   }
