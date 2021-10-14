@@ -24,6 +24,42 @@ class Lessons extends StatelessWidget {
       home: Scaffold(
         // Высокоуровневый виджет, создающий шаблон страницы в стиле Material Design.
 
+
+
+        backgroundColor: Colors.amber,
+        // Свойство, отвечающее за цвет самой страницы.
+
+        floatingActionButton: FloatingActionButton( backgroundColor: Colors.black,
+          onPressed: () {},
+        ),
+        // Свойство, отвечающее за добавление кнопки. Принимает в себя виджет
+        // FloatingActionButton().
+
+        floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+        // Свойство, отвечающее за расположение кнопки на экране. Имеет
+        // различные конструкторы.
+
+        bottomNavigationBar: BottomNavigationBar(
+          items: [
+            // Свойство, отвечающее за добавление нижней навигационной панели.
+
+            BottomNavigationBarItem(
+                icon: Icon(Icons.account_circle), label: "Аккаунт"),
+            // Элементы навигационной панели.
+
+            BottomNavigationBarItem(icon: Icon(Icons.edit), label: "Редактор"),
+
+           BottomNavigationBarItem(icon: Icon(Icons.search), label: "Поиск"),
+          ],
+        ),
+        body: Text(
+          // Свойство, содержащее в себе тело страницы. Принимает в себя
+          // различные виджеты. Для примера, в поместим сюда виджет Text().
+
+          "План урока:\n1) Понятие StatelessWidget()\n2) Виджет MaterialApp()\n3)"
+              " Виджет Scaffold()\n4) Виджет Text()\n5) Виджет TextStyle()\n6)"
+              " Виджет Color()",
+        ),
         appBar: AppBar(
           // Свойство, отвечающее за наличие верхнего меню - аппбара. Принимает
           // в себя виджет AppBar().
@@ -37,45 +73,9 @@ class Lessons extends StatelessWidget {
             // в себя строку с текстом заголовка.
           ),
 
-          backgroundColor: Colors
-              .blueAccent, // Свойство, отвечающее за цвет аппбара. Принимает
+          backgroundColor: Colors.purple, // Свойство, отвечающее за цвет аппбара. Принимает
           // в себя виджет, содержащий цвет.
-        ),
-
-        backgroundColor: Colors.white,
-        // Свойство, отвечающее за цвет самой страницы.
-
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-        ),
-        // Свойство, отвечающее за добавление кнопки. Принимает в себя виджет
-        // FloatingActionButton().
-
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        // Свойство, отвечающее за расположение кнопки на экране. Имеет
-        // различные конструкторы.
-
-        bottomNavigationBar: BottomNavigationBar(
-          items: [
-            // Свойство, отвечающее за добавление нижней навигационной панели.
-
-            BottomNavigationBarItem(
-                icon: Icon(Icons.account_box), label: "Аккаунт"),
-            // Элементы навигационной панели.
-
-            BottomNavigationBarItem(icon: Icon(Icons.edit), label: "Редактор"),
-
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: "Поиск"),
-          ],
-        ),
-        body: Text(
-          // Свойство, содержащее в себе тело страницы. Принимает в себя
-          // различные виджеты. Для примера, в поместим сюда виджет Text().
-
-          "План урока:\n1) Понятие StatelessWidget()\n2) Виджет MaterialApp()\n3)"
-              " Виджет Scaffold()\n4) Виджет Text()\n5) Виджет TextStyle()\n6)"
-              " Виджет Color()",
-        ), // Свойство, содержащее в себе тело страницы. Принимает в себя различные виджеты. Для примера, в поместим сюда виджет Text().
+        ),// Свойство, содержащее в себе тело страницы. Принимает в себя различные виджеты. Для примера, в поместим сюда виджет Text().
       ),
     );
   }
