@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:lessons/classList.dart';
 
 void main() => runApp(MyApp());
-
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
       title: "Уроки Flutter",
       home: Lessons(),
-
     );
   }
-
 }
 
 class Lessons extends StatefulWidget {
@@ -22,62 +19,61 @@ class Lessons extends StatefulWidget {
 }
 
 class _LessonsState extends State<Lessons> {
-   TextEditingController _controller = TextEditingController();
-   TextEditingController _controller2 = TextEditingController();
-   @override
-   void dispose() {
-     _controller.dispose();
-     super.dispose();
-   }
+  String dropdownValue = 'Воин';
 
+  List<DropdownMenuItem<String>> dropDownItemsList = <DropdownMenuItem<String>> [
+    DropdownMenuItem<String>(
+      value: 'Воин',
+      child: Text('Воин'),
+    ),
+    DropdownMenuItem<String>(
+      value: 'Маг',
+      child: Text('Маг'),
+    ),
+    DropdownMenuItem<String>(
+      value: 'Лучник',
+      child: Text('Лучник'),
+    ),
+    DropdownMenuItem<String>(
+      value: 'Чернокнижник',
+      child: Text('Чернокнижник'),
+    )
+  ];
 
-   @override
+  @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Column(  mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+    return Scaffold(
+      body: Center(
+        child: Column(
           children: [
-            TextField(
-              controller: _controller,
-              onSubmitted: (String value) async {
-                await showDialog<void>(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: const Text('Thanks!'),
-                      content: Text(
-                          'You typed "$value", which has length ${value.characters.length}.'),
-                      actions: <Widget>[
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text('OK'),
-                        ),
-                      ],
-                    );
+            Text("Выберете тип персонажа"),
+            Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: DropdownButton<String>(
+                  value: dropdownValue,
+                  icon: const Icon(Icons.arrow_downward),
+                  iconSize: 24,
+                  elevation: 16,
+                  style: const TextStyle(color: Colors.deepPurple),
+                  underline: Container(
+                    height: 2,
+                    color: Colors.deepPurpleAccent,
+                  ),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownValue = newValue!;
+                    });
                   },
-                );
-              },
+                  items: dropDownItemsList),
+            //       items: classList.map((String item){
+            //         return DropdownMenuItem(
+            //             value: item,
+            //             child: Text(item),
+            //         );
+            //      }).toList(),
+            //   ),
             ),
-
-            Container(
-              width: 400,
-              child:
-              TextFormField(keyboardType: TextInputType.number,
-                controller: _controller2,
-                decoration: const InputDecoration(
-                  icon: Icon(Icons.person),
-                  hintText: 'Введите любой текст',
-                  labelText: 'Ваш текст',
-                ),
-
-
-              )
-              ,
-            ),
-
           ],
         ),
       ),
