@@ -37,16 +37,23 @@ class _LessonsState extends State<Lessons> {
         padding: const EdgeInsets.all(30.0),
         child: Column(  mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            TextField(
+            TextField(  decoration: const InputDecoration(
+              border: OutlineInputBorder(
+                  borderRadius:
+                  BorderRadius.all(Radius.circular(10))),
+              icon: Icon(Icons.person),
+              hintText: 'Введите любой текст',
+              labelText: 'Ваш текст',
+            ) ,
               controller: _controller,
               onSubmitted: (String value) async {
                 await showDialog<void>(
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: const Text('Thanks!'),
+                      title: const Text('Спасибо!'),
                       content: Text(
-                          'You typed "$value", which has length ${value.characters.length}.'),
+                          'Вы ввели "$value", его длина ${value.characters.length}.'),
                       actions: <Widget>[
                         TextButton(
                           onPressed: () {
@@ -65,12 +72,12 @@ class _LessonsState extends State<Lessons> {
               width: 400,
               child:
               TextFormField(
-                keyboardType: TextInputType.number,
+                keyboardType: TextInputType.phone,
                 controller: _controller2,
                 decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius:
-                  BorderRadius.all(Radius.circular(20))),
+                  // border: OutlineInputBorder(
+                  //     borderRadius:
+                  // BorderRadius.all(Radius.circular(20))),
                   icon: Icon(Icons.person),
                   hintText: 'Введите любой текст',
                   labelText: 'Ваш текст',
@@ -79,9 +86,9 @@ class _LessonsState extends State<Lessons> {
                 onFieldSubmitted: (value) {
                   showDialog(context: context, builder: (BuildContext context) {
                     return               AlertDialog(
-                      title: const Text('Thanks!'),
+                      title: const Text('Спасибо!'),
                       content: Text(
-                          'You typed "${_controller2.text}", which has length ${_controller2.text.length}.'),
+                          'Вы ввели " "${_controller2.text}", его длина ${_controller2.text.length}.'),
                       actions: <Widget>[
                         TextButton(
                           onPressed: () {
@@ -99,9 +106,9 @@ class _LessonsState extends State<Lessons> {
             TextButton(onPressed: () {
                 showDialog(context: context, builder: (BuildContext context) {
                   return               AlertDialog(
-                    title: const Text('Thanks!'),
+                    title: const Text('Спасибо!'),
                     content: Text(
-                        'You typed "${_controller2.text}", which has length ${_controller2.text.length}.'),
+                        'Вы ввели "${_controller.text}", его длина ${_controller.text.length}.'),
                     actions: <Widget>[
                       TextButton(
                         onPressed: () {
