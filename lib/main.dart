@@ -1,6 +1,20 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(Lessons());
+void main() => runApp(MyApp());
+
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+
+      title: "Уроки Flutter",
+      home: Lessons(),
+
+    );
+  }
+
+}
 
 class Lessons extends StatefulWidget {
   @override
@@ -8,14 +22,12 @@ class Lessons extends StatefulWidget {
 }
 
 class _LessonsState extends State<Lessons> {
-  int x = 0;
-  int y = 0;
+  bool? isChecked = false;
+
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Уроки Flutter",
-      home: Scaffold(
+    return  Scaffold(
         drawer: Drawer(
           child: Container(
             height: double.infinity,
@@ -23,9 +35,9 @@ class _LessonsState extends State<Lessons> {
             decoration: BoxDecoration(
               border: Border(
                   right: BorderSide(
-                color: Colors.blueAccent,
-                width: 2,
-              )),
+                    color: Colors.blueAccent,
+                    width: 2,
+                  )),
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -200,198 +212,112 @@ class _LessonsState extends State<Lessons> {
             BottomNavigationBarItem(icon: Icon(Icons.search), label: "Поиск"),
           ],
         ),
+        // body: Center(
+        //
+        // ),
+
+        // Все кнопки и поля для галочек наследуются от класса InkWell(), с
+        // помощью которого можно создавать уникальные кнопки и поля с фильтрами.
+
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
+          child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: FloatingActionButton(
-                  /// С данной кнопкой мы уже имели
-                  /// дело, так как она входит в одно из полей виджета
-                  /// Scaffold(). Рассмотри подробнее её свойства.
+              Row(
+                children: [
+                  Checkbox( // При помощи этого виджета мы можем создать поля для
+                    // галочек. Рассмотрим пример:
 
-                  elevation: 20,
+                    checkColor: Colors.black,
+                    // Свойство, отвкечающее за цвет галочки
 
-                  /// Свойство, меняющее уровень подъема кнопки
-                  /// над плоскостью экрана.
+                    fillColor: MaterialStateProperty.all(Colors.blue),
+                    // Свойство, отвечающее
+                    // за цвет поля
 
-                  backgroundColor: Colors.blue,
+                    value: isChecked,
+                    // В данное поле мы помещаем переменную типы bool,
+                    // опираясь на которое будет перестраиваться экран.
 
-                  /// Свойство, отвечающее
-                  /// за цвет самой кнопки.
-
-                  foregroundColor: Colors.white,
-
-                  /// Свойство, отвечающее за
-                  /// цвет дочернего элемента кнопки.
-
-                  splashColor: Colors.blueAccent,
-
-                  /// Свойство, отвечающее за
-                  /// цвет всплеска кнопки при нажатии.
-
-                  onPressed: () {
+                    onChanged: (
+                        value) { // Метод, срабатывающий при нажатии на поле.
+                      setState(() {
+                        isChecked = value;
+                      });
+                    },
+                  ),
+                  TextButton(onPressed: () {
                     setState(() {
-                      /// Свойство, описывающее
-                      /// действие, совершаемое при нажатии кнопки.
-
-                      x = x + 1;
+                      isChecked = !(isChecked?? false);
                     });
                   },
-
-                  child: Center(
-                    /// Свойство, содержащее дочерний элемент
-                    /// кнопки.
-
-                    child: Icon(
-                      Icons.add,
-                      size: 40,
-                    ),
-                  ),
-                ),
+                  child: Text(" Подтвердите пользовательское соглашение"))
+                ],
               ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: SizedBox(
-                  width: 220,
-                  height: 70,
-                  child: ElevatedButton(
-                    /// Следующий тип кнопки - это
-                    /// ElevatedButton(). Рассмотрим его подробнее:
 
-                    onPressed: () {
-                      setState(() {
-                        /// В данном типе кнопок
-                        /// метод onPressed реагирует только на коротковременные
-                        /// нажатия.
+              Opacity(
 
-                        x = x + 1;
-                      });
-                    },
+                opacity: isChecked ?? false ? 1.0 : 0.4,
+                child: InkWell(
 
-                    onLongPress: () {
-                      setState(() {
-                        /// У данного типа кнопок
-                        /// присутствует еще один тип нажатия - долгое нажатие.
-                        /// Зададим функцию и на этот тип нажатия:
-
-                        y = y + 1;
-                      });
-                    },
-
-                    style: ButtonStyle(
-                      /// Свойство, отвечающее за стиль текста.
-
-                      side: MaterialStateProperty.all(
-                          BorderSide(width: 2, color: Colors.black)),
-
-                      /// Свойство, отвечающее за рамку кнопки. Важно: большая
-                      /// часть уже знакомых раннее виджетов помещается.
-
-                      elevation: MaterialStateProperty.all(20),
-                      backgroundColor: MaterialStateProperty.all(Colors.red),
-                      foregroundColor: MaterialStateProperty.all(Colors.black),
-                      overlayColor: MaterialStateProperty.all(Colors.redAccent),
-
-                      /// Свойство, отвечающее за цвет всплеска кнопки при
-                      /// нажатии.
-
-                      textStyle: MaterialStateProperty.all(TextStyle(
-                        fontWeight: FontWeight.bold,
-                        decoration: TextDecoration.underline,
-                        fontSize: 15,
-                      )),
-                    ),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.all(5),
-                          child: Icon(Icons.shopping_basket),
+                  onTap: !(isChecked ?? false) ? null : () {
+                    showDialog(
+                      context: context, builder: (BuildContext context) {
+                      return Dialog(
+                        child: Container(
+                          width: 300,
+                          height: 300,
+                          child: Center(child: Text(
+                              "нажатие onTap"
+                          ),),
                         ),
-                        Padding(
-                          padding: EdgeInsets.all(5),
-                          child: Text("Добавить в корзину"),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: IconButton(
-
-                    /// Третий тип кнопок - IconButton().
-
-                    iconSize: 40,
-
-                    /// Свойство, отвечающее за размер иконки.
-
-                    color: Colors.deepPurple,
-                    splashRadius: 30,
-                    // Свойство, отвечающее за радиус всплеска,
-                    // появляющегося при нажатии на кнопку.
-
-                    splashColor: Colors.purpleAccent,
-                    onPressed: () {
-                      setState(() {
-                        x = x + 1;
-                      });
+                      );
                     },
-                    icon: Icon(
-                        Icons.timer_outlined) // Свойство, содержащее в себе
-                    // иконку
+                    );
+                  },
+                  onLongPress: !(isChecked?? false) ? null: (){
+                    showDialog(context: context, builder: (BuildContext context) {
+                      return Dialog(
+                        child: Container( width: 300, height: 200,
+                          child: Center(child: Text(
+                              "нажатие onLongPress"
+                          ),),
+                        ),
+                      );
+                    },);
+
+                  },
+                  onDoubleTap: !(isChecked ?? false) ? null : () {
+                    showDialog(
+                      context: context, builder: (BuildContext context) {
+                      return Dialog(
+                        child: Container(
+                                width: 200, height: 200,
+                          child: Center(child: Text(
+                              "нажатие onDoubleTap"
+                          ),),
+                        ),
+                      );
+                    },);
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: 150,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.yellowAccent[200],
+                      border: Border.all(
+                        width: 2,
+                        color: Colors.black,
+                      ),
+
                     ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: TextButton(
-                  // Последний тип кнопок - TextButton()
-                  onPressed: () {
-                    setState(() {
-                      x = x + 1;
-                    });
-                  },
-                  onLongPress: () {
-                    setState(() {
-                      y = y + 1;
-                    });
-                  },
-                  child: Text("Новая заметка"), // Свойство, содержащее в себе
-                  // текст кнопки
-                  style: ButtonStyle(
-                    foregroundColor: MaterialStateProperty.all(Colors.teal),
-                    textStyle: MaterialStateProperty.all(TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      decoration: TextDecoration.underline,
-                    )),
+                    child: Text("Далее"),
                   ),
                 ),
               ),
-              Container(
-                width: 300,
-                height: 70,
-                decoration: BoxDecoration(
-                  color: Colors.white70,
-                  border: Border.all(width: 2, color: Colors.black),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Center(
-                    child: Text(
-                  "Число нажатий: $x\nЧисло долгих нажатий: $y",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20),
-                )),
-              )
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }
