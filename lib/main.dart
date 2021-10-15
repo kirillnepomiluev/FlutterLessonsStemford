@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lessons/classList.dart';
+import 'classList.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -21,7 +22,7 @@ class Lessons extends StatefulWidget {
 class _LessonsState extends State<Lessons> {
   String dropdownValue = 'Воин';
 
-  List<DropdownMenuItem<String>> dropDownItemsList = <DropdownMenuItem<String>> [
+  List<DropdownMenuItem<String>> dropDownItemsList = <DropdownMenuItem<String>>[
     const DropdownMenuItem<String>(
       value: 'Воин',
       child: Text('Воин'),
@@ -42,10 +43,9 @@ class _LessonsState extends State<Lessons> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Center(
-        child: Column(
+        child: Column( mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text("Выберете тип персонажа"),
             Padding(
@@ -63,16 +63,17 @@ class _LessonsState extends State<Lessons> {
                   onChanged: (String? newValue) {
                     setState(() {
                       dropdownValue = newValue!;
+                      print(dropdownValue);
                     });
                   },
-                  items: dropDownItemsList),
-            //       items: classList.map((String item){
-            //         return DropdownMenuItem(
-            //             value: item,
-            //             child: Text(item),
-            //         );
-            //      }).toList(),
-            //   ),
+                 // items: dropDownItemsList),
+                    items: classList.map((String item){
+                      return DropdownMenuItem(
+                          value: item,
+                          child: Text(item),
+                      );
+                   }).toList(),
+                ),
             ),
           ],
         ),
