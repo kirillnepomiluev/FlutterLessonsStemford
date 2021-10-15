@@ -19,32 +19,101 @@ class Lessons extends StatefulWidget {
 }
 
 class _LessonsState extends State<Lessons> {
-
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Colors.white,
+        body: buildListViewBuilder());
+  }
+  ListView buildListViewBuilder() {
+    return ListView.builder(
+      itemCount: character.length,
+      itemBuilder: (BuildContext context, int index) {
+      return  Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+        child: Card(
+          elevation: 8,
+          color: Colors.white60,
+          child: Center(
+            child: Row(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  child: Icon(
+                    Icons.edit,
+                    size: 30,
+                  ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      "Класс - ${ character[index]["Класс"]}",
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                    Text(
+                      "Тип брони - ${character[index]["Тип доспехов"]}",
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                    Text(
+                      "Основная характеристика - ${character[index]["Основная харрактеристика"]}",
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    },);
+  }
 
-    return Scaffold( backgroundColor: Colors.white,
-      body: ListView(
-        children: character.map((Map<String, String> item){
+  ListView buildListView() {
+    return ListView(
+        children: character.map((Map<String, String> item) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
             child: Card(
-              elevation:8,
+              elevation: 8,
               color: Colors.white60,
               child: Center(
                 child: Row(
                   children: [
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 5),
-                      child: Icon(Icons.edit, size: 30,),
+                      child: Icon(
+                        Icons.edit,
+                        size: 30,
+                      ),
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Text("Класс - ${item["Класс"]}", style: TextStyle(fontSize: 20, ),),
-                        Text("Тип брони - ${item["Тип доспехов"]}", style: TextStyle(fontSize: 18, ),),
-                        Text("Основная характеристика - ${item["Основная харрактеристика"]}",
-                          style: TextStyle(fontSize: 16, ),),
+                        Text(
+                          "Класс - ${item["Класс"]}",
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                        Text(
+                          "Тип брони - ${item["Тип доспехов"]}",
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                        Text(
+                          "Основная характеристика - ${item["Основная харрактеристика"]}",
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -53,7 +122,6 @@ class _LessonsState extends State<Lessons> {
             ),
           );
         }).toList(),
-      )
-    );
+      );
   }
 }
