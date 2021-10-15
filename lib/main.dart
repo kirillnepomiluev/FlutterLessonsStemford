@@ -22,19 +22,19 @@ class _LessonsState extends State<Lessons> {
   String dropdownValue = 'Воин';
 
   List<DropdownMenuItem<String>> dropDownItemsList = <DropdownMenuItem<String>> [
-    DropdownMenuItem<String>(
+    const DropdownMenuItem<String>(
       value: 'Воин',
       child: Text('Воин'),
     ),
-    DropdownMenuItem<String>(
+    const DropdownMenuItem<String>(
       value: 'Маг',
       child: Text('Маг'),
     ),
-    DropdownMenuItem<String>(
+    const DropdownMenuItem<String>(
       value: 'Лучник',
       child: Text('Лучник'),
     ),
-    DropdownMenuItem<String>(
+    const DropdownMenuItem<String>(
       value: 'Чернокнижник',
       child: Text('Чернокнижник'),
     )
@@ -47,7 +47,7 @@ class _LessonsState extends State<Lessons> {
       body: Center(
         child: Column(
           children: [
-            Text("Выберете тип персонажа"),
+            const Text("Выберете тип персонажа"),
             Padding(
               padding: const EdgeInsets.all(30.0),
               child: DropdownButton<String>(
