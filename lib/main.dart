@@ -19,64 +19,40 @@ class Lessons extends StatefulWidget {
 }
 
 class _LessonsState extends State<Lessons> {
-  String dropdownValue = 'Воин';
-
-  List<DropdownMenuItem<String>> dropDownItemsList = <DropdownMenuItem<String>> [
-    DropdownMenuItem<String>(
-      value: 'Воин',
-      child: Text('Воин'),
-    ),
-    DropdownMenuItem<String>(
-      value: 'Маг',
-      child: Text('Маг'),
-    ),
-    DropdownMenuItem<String>(
-      value: 'Лучник',
-      child: Text('Лучник'),
-    ),
-    DropdownMenuItem<String>(
-      value: 'Чернокнижник',
-      child: Text('Чернокнижник'),
-    )
-  ];
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            Text("Выберете тип персонажа"),
-            Padding(
-              padding: const EdgeInsets.all(30.0),
-              child: DropdownButton<String>(
-                  value: dropdownValue,
-                  icon: const Icon(Icons.arrow_downward),
-                  iconSize: 24,
-                  elevation: 16,
-                  style: const TextStyle(color: Colors.deepPurple),
-                  underline: Container(
-                    height: 2,
-                    color: Colors.deepPurpleAccent,
-                  ),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      dropdownValue = newValue!;
-                    });
-                  },
-                  items: dropDownItemsList),
-            //       items: classList.map((String item){
-            //         return DropdownMenuItem(
-            //             value: item,
-            //             child: Text(item),
-            //         );
-            //      }).toList(),
-            //   ),
+      body: ListView(
+        children: charecter.map((item){
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5),
+            child: Card(
+              elevation: 10,
+              color: Colors.white60,
+              child: Center(
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 5),
+                      child: Icon(Icons.edit, size: 30,),
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text("Класс - ${item["Класс"]}", style: TextStyle(fontSize: 20, ),),
+                        Text("Тип брони - ${item["Тип доспехов"]}", style: TextStyle(fontSize: 18, ),),
+                        Text("Основная характеристика - ${item["Основная харрактеристика"]}", style: TextStyle(fontSize: 16, ),),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ],
-        ),
-      ),
+          );
+        }).toList(),
+      )
     );
   }
 }
