@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lessons/classList.dart';
+import 'package:lessons/router.dart';
+import 'package:lessons/secondScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,6 +11,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Уроки Flutter",
       home: Lessons(),
+      onGenerateRoute: MyRouter.generateRoute,
+      initialRoute: RouteNames.main,
     );
   }
 }
@@ -24,35 +28,20 @@ class _LessonsState extends State<Lessons> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      body: ListView(
-        children: charecter.map((item){
-          return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            child: Card(
-              elevation: 10,
-              color: Colors.white60,
-              child: Center(
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 5),
-                      child: Icon(Icons.edit, size: 30,),
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text("Класс - ${item["Класс"]}", style: TextStyle(fontSize: 20, ),),
-                        Text("Тип брони - ${item["Тип доспехов"]}", style: TextStyle(fontSize: 18, ),),
-                        Text("Основная характеристика - ${item["Основная харрактеристика"]}", style: TextStyle(fontSize: 16, ),),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
-        }).toList(),
-      )
+      appBar: AppBar(
+        title: Text("Страница 1"),
+      ),
+     body: Center(
+       child: IconButton(
+         onPressed: (){
+           Navigator.push(context,
+               MaterialPageRoute(builder: (context) => Lessons2()));
+
+         //  Navigator.pushNamed(context, RouteNames.secondPage);
+         },
+         icon: Icon(Icons.arrow_forward),
+       ),
+     ),
     );
   }
 }
