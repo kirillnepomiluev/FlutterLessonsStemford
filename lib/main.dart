@@ -25,16 +25,16 @@ class _LessonsState extends State<Lessons> {
 
     return Scaffold(
       body: ListView(
-        children: charecter.map((item){
+        children: character.map((item){
           return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Card(
               elevation: 10,
               color: Colors.white60,
               child: Center(
                 child: Row(
                   children: [
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 5),
                       child: Icon(Icons.edit, size: 30,),
                     ),
