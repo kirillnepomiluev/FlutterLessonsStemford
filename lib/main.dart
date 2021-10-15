@@ -32,7 +32,7 @@ class _LessonsState extends State<Lessons> {
           child: Container(
             height: double.infinity,
             width: double.infinity,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               border: Border(
                   right: BorderSide(
                     color: Colors.blueAccent,
@@ -53,7 +53,7 @@ class _LessonsState extends State<Lessons> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 100,
                 ),
                 Padding(
@@ -66,7 +66,7 @@ class _LessonsState extends State<Lessons> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Row(
-                      children: [
+                      children: const [
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 5),
                           child: Icon(
@@ -76,7 +76,7 @@ class _LessonsState extends State<Lessons> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          padding: EdgeInsets.symmetric(horizontal: 5),
                           child: Text(
                             "Профиль",
                             style: TextStyle(
@@ -100,7 +100,7 @@ class _LessonsState extends State<Lessons> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Row(
-                      children: [
+                      children: const [
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 5),
                           child: Icon(
@@ -110,7 +110,7 @@ class _LessonsState extends State<Lessons> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          padding: EdgeInsets.symmetric(horizontal: 5),
                           child: Text(
                             "Заметки",
                             style: TextStyle(
@@ -134,7 +134,7 @@ class _LessonsState extends State<Lessons> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Row(
-                      children: [
+                      children: const [
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 5),
                           child: Icon(
@@ -144,7 +144,7 @@ class _LessonsState extends State<Lessons> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          padding: EdgeInsets.symmetric(horizontal: 5),
                           child: Text(
                             "Уведомления",
                             style: TextStyle(
@@ -168,7 +168,7 @@ class _LessonsState extends State<Lessons> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Row(
-                      children: [
+                      children: const [
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 5),
                           child: Icon(
@@ -178,7 +178,7 @@ class _LessonsState extends State<Lessons> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          padding: EdgeInsets.symmetric(horizontal: 5),
                           child: Text(
                             "Настройки",
                             style: TextStyle(
@@ -198,14 +198,14 @@ class _LessonsState extends State<Lessons> {
         ),
         appBar: AppBar(
           centerTitle: true,
-          title: Text(
+          title: const Text(
             "Органайзер",
           ),
           backgroundColor: Colors.blueAccent,
         ),
         backgroundColor: Colors.white,
         bottomNavigationBar: BottomNavigationBar(
-          items: [
+          items: const [
             BottomNavigationBarItem(
                 icon: Icon(Icons.account_box), label: "Аккаунт"),
             BottomNavigationBarItem(icon: Icon(Icons.edit), label: "Редактор"),
@@ -250,7 +250,7 @@ class _LessonsState extends State<Lessons> {
                       isChecked = !(isChecked?? false);
                     });
                   },
-                  child: Text(" Подтвердите пользовательское соглашение"))
+                  child: const Text(" Подтвердите пользовательское соглашение"))
                 ],
               ),
 
@@ -262,8 +262,8 @@ class _LessonsState extends State<Lessons> {
                   onTap: !(isChecked ?? false) ? null : () {
                     showDialog(
                       context: context, builder: (BuildContext context) {
-                      return Dialog(
-                        child: Container(
+                      return const Dialog(
+                        child: SizedBox(
                           width: 300,
                           height: 300,
                           child: Center(child: Text(
@@ -276,8 +276,8 @@ class _LessonsState extends State<Lessons> {
                   },
                   onLongPress: !(isChecked?? false) ? null: (){
                     showDialog(context: context, builder: (BuildContext context) {
-                      return Dialog(
-                        child: Container( width: 300, height: 200,
+                      return const Dialog(
+                        child: SizedBox( width: 300, height: 200,
                           child: Center(child: Text(
                               "нажатие onLongPress"
                           ),),
@@ -289,8 +289,8 @@ class _LessonsState extends State<Lessons> {
                   onDoubleTap: !(isChecked ?? false) ? null : () {
                     showDialog(
                       context: context, builder: (BuildContext context) {
-                      return Dialog(
-                        child: Container(
+                      return const Dialog(
+                        child: SizedBox(
                                 width: 200, height: 200,
                           child: Center(child: Text(
                               "нажатие onDoubleTap"
@@ -311,7 +311,7 @@ class _LessonsState extends State<Lessons> {
                       ),
 
                     ),
-                    child: Text("Далее"),
+                    child: const Text("Далее"),
                   ),
                 ),
               ),
