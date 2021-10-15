@@ -23,13 +23,13 @@ class _LessonsState extends State<Lessons> {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
+    return Scaffold( backgroundColor: Colors.white,
       body: ListView(
-        children: character.map((item){
+        children: character.map((Map<String, String> item){
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
             child: Card(
-              elevation: 10,
+              elevation:8,
               color: Colors.white60,
               child: Center(
                 child: Row(
@@ -43,7 +43,8 @@ class _LessonsState extends State<Lessons> {
                       children: [
                         Text("Класс - ${item["Класс"]}", style: TextStyle(fontSize: 20, ),),
                         Text("Тип брони - ${item["Тип доспехов"]}", style: TextStyle(fontSize: 18, ),),
-                        Text("Основная характеристика - ${item["Основная харрактеристика"]}", style: TextStyle(fontSize: 16, ),),
+                        Text("Основная характеристика - ${item["Основная харрактеристика"]}",
+                          style: TextStyle(fontSize: 16, ),),
                       ],
                     ),
                   ],
