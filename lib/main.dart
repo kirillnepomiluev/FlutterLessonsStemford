@@ -212,7 +212,7 @@ class _LessonsState extends State<Lessons> {
                   /// дело, так как она входит в одно из полей виджета
                   /// Scaffold(). Рассмотри подробнее её свойства.
 
-                  elevation: 20,
+                  elevation: 8,
 
                   /// Свойство, меняющее уровень подъема кнопки
                   /// над плоскостью экрана.
@@ -227,7 +227,7 @@ class _LessonsState extends State<Lessons> {
                   /// Свойство, отвечающее за
                   /// цвет дочернего элемента кнопки.
 
-                  splashColor: Colors.blueAccent,
+                  splashColor: Colors.redAccent,
 
                   /// Свойство, отвечающее за
                   /// цвет всплеска кнопки при нажатии.
@@ -237,7 +237,7 @@ class _LessonsState extends State<Lessons> {
                       /// Свойство, описывающее
                       /// действие, совершаемое при нажатии кнопки.
 
-                      x = x + 1;
+                      x ++;
                     });
                   },
 
@@ -253,7 +253,7 @@ class _LessonsState extends State<Lessons> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 child: SizedBox(
                   width: 220,
                   height: 70,
@@ -281,7 +281,7 @@ class _LessonsState extends State<Lessons> {
                       });
                     },
 
-                    style: ButtonStyle(
+                    style:  ButtonStyle(
                       /// Свойство, отвечающее за стиль текста.
 
                       side: MaterialStateProperty.all(
@@ -293,7 +293,7 @@ class _LessonsState extends State<Lessons> {
                       elevation: MaterialStateProperty.all(20),
                       backgroundColor: MaterialStateProperty.all(Colors.red),
                       foregroundColor: MaterialStateProperty.all(Colors.black),
-                      overlayColor: MaterialStateProperty.all(Colors.redAccent),
+                      overlayColor: MaterialStateProperty.all(Colors.black12),
 
                       /// Свойство, отвечающее за цвет всплеска кнопки при
                       /// нажатии.
@@ -325,12 +325,12 @@ class _LessonsState extends State<Lessons> {
 
                     /// Третий тип кнопок - IconButton().
 
-                    iconSize: 40,
+                    iconSize: 90,
 
                     /// Свойство, отвечающее за размер иконки.
 
                     color: Colors.deepPurple,
-                    splashRadius: 30,
+                    splashRadius: 90,
                     // Свойство, отвечающее за радиус всплеска,
                     // появляющегося при нажатии на кнопку.
 
@@ -341,7 +341,7 @@ class _LessonsState extends State<Lessons> {
                       });
                     },
                     icon: const Icon(
-                        Icons.timer_outlined) // Свойство, содержащее в себе
+                        Icons.error) // Свойство, содержащее в себе
                     // иконку
                     ),
               ),
@@ -359,9 +359,10 @@ class _LessonsState extends State<Lessons> {
                       y = y + 1;
                     });
                   },
-                  child: const Text("Новая заметка"), // Свойство, содержащее в себе
+                  child: Container( padding: EdgeInsets.all(10),
+                      child: const Text("Новая заметка")), // Свойство, содержащее в себе
                   // текст кнопки
-                  style: ButtonStyle(
+                  style: ButtonStyle(backgroundColor:  MaterialStateProperty.all(Colors.black) ,
                     foregroundColor: MaterialStateProperty.all(Colors.teal),
                     textStyle: MaterialStateProperty.all(const TextStyle(
                       fontSize: 40,
