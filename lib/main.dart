@@ -4,19 +4,20 @@ void main() => runApp(MyApp());
 
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-
+    return const MaterialApp(
       title: "Уроки Flutter",
       home: Lessons(),
-
     );
   }
 
 }
 
 class Lessons extends StatefulWidget {
+  const Lessons({Key? key}) : super(key: key);
+
   @override
   _LessonsState createState() => _LessonsState();
 }
@@ -57,7 +58,7 @@ class _LessonsState extends State<Lessons> {
                   height: 100,
                 ),
                 Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
@@ -91,7 +92,7 @@ class _LessonsState extends State<Lessons> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
@@ -159,7 +160,7 @@ class _LessonsState extends State<Lessons> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
@@ -227,7 +228,7 @@ class _LessonsState extends State<Lessons> {
                   Checkbox( // При помощи этого виджета мы можем создать поля для
                     // галочек. Рассмотрим пример:
 
-                    checkColor: Colors.black,
+                    checkColor: Colors.redAccent,
                     // Свойство, отвкечающее за цвет галочки
 
                     fillColor: MaterialStateProperty.all(Colors.blue),
@@ -238,8 +239,7 @@ class _LessonsState extends State<Lessons> {
                     // В данное поле мы помещаем переменную типы bool,
                     // опираясь на которое будет перестраиваться экран.
 
-                    onChanged: (
-                        value) { // Метод, срабатывающий при нажатии на поле.
+                    onChanged: (value) { // Метод, срабатывающий при нажатии на поле.
                       setState(() {
                         isChecked = value;
                       });
@@ -256,7 +256,7 @@ class _LessonsState extends State<Lessons> {
 
               Opacity(
 
-                opacity: isChecked ?? false ? 1.0 : 0.4,
+                opacity: isChecked?? false ? 1.0 : 0.3,
                 child: InkWell(
 
                   onTap: !(isChecked ?? false) ? null : () {
@@ -304,7 +304,7 @@ class _LessonsState extends State<Lessons> {
                     width: 150,
                     height: 50,
                     decoration: BoxDecoration(
-                      color: Colors.yellowAccent[200],
+                      color: Colors.blue[200],
                       border: Border.all(
                         width: 2,
                         color: Colors.black,
