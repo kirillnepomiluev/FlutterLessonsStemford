@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.lessons">
    <application
+       android:name="androidx.multidex.MultiDexApplication" >
         android:label="lessons"
         android:icon="@mipmap/ic_launcher">
         <activity

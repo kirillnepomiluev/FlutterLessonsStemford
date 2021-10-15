@@ -1,3 +1,4 @@
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:lessons/classList.dart';
 import 'package:lessons/router.dart';
@@ -34,12 +35,13 @@ class _LessonsState extends State<Lessons> {
      body: Center(
        child: IconButton(
          onPressed: (){
-           Navigator.push(context,
-               MaterialPageRoute(builder: (context) => Lessons2()));
-
-         //  Navigator.pushNamed(context, RouteNames.secondPage);
+           AssetsAudioPlayer.newPlayer().open(
+             Audio("assets/audios/song.mp3"),
+             autoStart: true,
+             showNotification: true,
+           );
          },
-         icon: Icon(Icons.arrow_forward),
+         icon: Icon(Icons.play_circle_fill),
        ),
      ),
     );
