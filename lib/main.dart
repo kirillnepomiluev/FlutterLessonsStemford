@@ -20,7 +20,7 @@ class _LessonsState extends State<Lessons> {
           child: Container(
             height: double.infinity,
             width: double.infinity,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               border: Border(
                   right: BorderSide(
                 color: Colors.blueAccent,
@@ -41,11 +41,11 @@ class _LessonsState extends State<Lessons> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 100,
                 ),
                 Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
@@ -54,7 +54,7 @@ class _LessonsState extends State<Lessons> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Row(
-                      children: [
+                      children: const [
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 5),
                           child: Icon(
@@ -64,7 +64,7 @@ class _LessonsState extends State<Lessons> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          padding: EdgeInsets.symmetric(horizontal: 5),
                           child: Text(
                             "Профиль",
                             style: TextStyle(
@@ -79,7 +79,7 @@ class _LessonsState extends State<Lessons> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
@@ -88,7 +88,7 @@ class _LessonsState extends State<Lessons> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Row(
-                      children: [
+                      children: const [
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 5),
                           child: Icon(
@@ -98,7 +98,7 @@ class _LessonsState extends State<Lessons> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          padding: EdgeInsets.symmetric(horizontal: 5),
                           child: Text(
                             "Заметки",
                             style: TextStyle(
@@ -113,7 +113,7 @@ class _LessonsState extends State<Lessons> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
@@ -122,7 +122,7 @@ class _LessonsState extends State<Lessons> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Row(
-                      children: [
+                      children: const [
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 5),
                           child: Icon(
@@ -132,7 +132,7 @@ class _LessonsState extends State<Lessons> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          padding: EdgeInsets.symmetric(horizontal: 5),
                           child: Text(
                             "Уведомления",
                             style: TextStyle(
@@ -147,7 +147,7 @@ class _LessonsState extends State<Lessons> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: Container(
                     height: 50,
                     decoration: BoxDecoration(
@@ -156,7 +156,7 @@ class _LessonsState extends State<Lessons> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Row(
-                      children: [
+                      children: const [
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 5),
                           child: Icon(
@@ -166,7 +166,7 @@ class _LessonsState extends State<Lessons> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          padding: EdgeInsets.symmetric(horizontal: 5),
                           child: Text(
                             "Настройки",
                             style: TextStyle(
@@ -186,14 +186,14 @@ class _LessonsState extends State<Lessons> {
         ),
         appBar: AppBar(
           centerTitle: true,
-          title: Text(
+          title: const Text(
             "Органайзер",
           ),
           backgroundColor: Colors.blueAccent,
         ),
         backgroundColor: Colors.white,
         bottomNavigationBar: BottomNavigationBar(
-          items: [
+          items: const [
             BottomNavigationBarItem(
                 icon: Icon(Icons.account_box), label: "Аккаунт"),
             BottomNavigationBarItem(icon: Icon(Icons.edit), label: "Редактор"),
@@ -241,7 +241,7 @@ class _LessonsState extends State<Lessons> {
                     });
                   },
 
-                  child: Center(
+                  child: const Center(
                     /// Свойство, содержащее дочерний элемент
                     /// кнопки.
 
@@ -298,14 +298,14 @@ class _LessonsState extends State<Lessons> {
                       /// Свойство, отвечающее за цвет всплеска кнопки при
                       /// нажатии.
 
-                      textStyle: MaterialStateProperty.all(TextStyle(
+                      textStyle: MaterialStateProperty.all(const TextStyle(
                         fontWeight: FontWeight.bold,
                         decoration: TextDecoration.underline,
                         fontSize: 15,
                       )),
                     ),
                     child: Row(
-                      children: [
+                      children: const [
                         Padding(
                           padding: EdgeInsets.all(5),
                           child: Icon(Icons.shopping_basket),
@@ -320,7 +320,7 @@ class _LessonsState extends State<Lessons> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 child: IconButton(
 
                     /// Третий тип кнопок - IconButton().
@@ -340,7 +340,7 @@ class _LessonsState extends State<Lessons> {
                         x = x + 1;
                       });
                     },
-                    icon: Icon(
+                    icon: const Icon(
                         Icons.timer_outlined) // Свойство, содержащее в себе
                     // иконку
                     ),
@@ -359,11 +359,11 @@ class _LessonsState extends State<Lessons> {
                       y = y + 1;
                     });
                   },
-                  child: Text("Новая заметка"), // Свойство, содержащее в себе
+                  child: const Text("Новая заметка"), // Свойство, содержащее в себе
                   // текст кнопки
                   style: ButtonStyle(
                     foregroundColor: MaterialStateProperty.all(Colors.teal),
-                    textStyle: MaterialStateProperty.all(TextStyle(
+                    textStyle: MaterialStateProperty.all(const TextStyle(
                       fontSize: 40,
                       fontWeight: FontWeight.bold,
                       decoration: TextDecoration.underline,
@@ -382,7 +382,7 @@ class _LessonsState extends State<Lessons> {
                 child: Center(
                     child: Text(
                   "Число нажатий: $x\nЧисло долгих нажатий: $y",
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 20),
