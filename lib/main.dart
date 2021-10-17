@@ -1,84 +1,110 @@
-import 'package:flutter/material.dart'; // Импорт библиотеки, содержащей основные
-// инструменты flutter - виджеты.
+import 'dart:math';
+import 'package:flutter/material.dart';
 
-/// Виджет - это физуальные и функциональные компоненты, из которых состоит приложение.
-/// Все элементы в flutter являются виджетами.
+void main() => runApp(MyApp());
 
-void main() => runApp(Lessons());
-
-class Lessons extends StatelessWidget {
-  /// StatelessWidget() - это абстрактный класс
-  /// который отвечает за создание статичного виджета. Статичный виджет - это виджет,
-  /// который не будет менять своего состояния (например картинка, иконка, текст).
+class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
-      // Высокоуровневый виджет, отвечающий за создание графического интерфейса
-      // приложения в стиле Material Design.
+      home: MyApp2(),
+    );
+  }
+}
 
-      title: "Название приложения",
-      // В свойство title передается название приложения, которое будет
-      // отображаться в названии страницы. Принимает в себя строку.
+// class MyAnimation extends StatefulWidget {
+//
+//   @override
+//   _MyAnimationState createState() {
+//     return _MyAnimationState();
+//   }
+// }
+//
+// class _MyAnimationState extends State<MyAnimation> {
+//
+//   bool isChangeWidget = false;
+//   bool startAnimation = false;
+//
+//   @override
+//   Widget build(BuildContext context) {
+    // return Scaffold(
+    //   appBar: AppBar(title: Text('Animation example')),
+    //   body: Center(
+    //     child: SizedBox(
+    //       width: 200.0,
+    //       height: 200.0,
+    //       child: InkWell(
+    //         onTap: () => setState(() => isChangeWidget = !isChangeWidget),
+    //         child: AnimatedCrossFade(
+    //           crossFadeState: isChangeWidget ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+    //           duration: const Duration(seconds: 2),
+    //           firstChild: Container(color: Colors.green),
+    //           secondChild: Container(color: Colors.red),
+    //         ),
+    //       ),
+    //     ),
+    //   ),
+    // );
 
-      home: Scaffold(
-        // Высокоуровневый виджет, создающий шаблон страницы в стиле Material Design.
+    // return Scaffold(
+    //   appBar: AppBar(title: Text('Animation example')),
+    //   body: Center(
+    //     child: InkWell(
+    //       onTap: () => setState(() => startAnimation = !startAnimation),
+    //       child: AnimatedContainer(
+    //         decoration: BoxDecoration(
+    //           color: startAnimation ? Colors.lightGreen : Colors.red,
+    //           borderRadius: BorderRadius.circular(startAnimation ? 15.0 : 0.0),
+    //         ),
+    //         width: startAnimation ? 100 : 200,
+    //         height: startAnimation ? 100 : 200,
+    //         curve: Curves.easeInOutCubic,
+    //         duration: Duration(seconds: 1),
+    //       ),
+    //     ),
+    //   ),
+    // );
+//   }
+// }
+
+class MyApp2 extends StatefulWidget {
+
+  @override
+  _MyApp2State createState() {
+    return _MyApp2State();
+  }
+}
 
 
+class _MyApp2State extends State<MyApp2> with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
 
-        backgroundColor: Colors.amber,
-        // Свойство, отвечающее за цвет самой страницы.
+  @override
+  void initState() {
+    _animationController = AnimationController(duration: Duration(milliseconds: 1000), vsync: this);
+    _animationController.addListener(() => setState(() {}));
+    super.initState();
+  }
 
-        floatingActionButton: FloatingActionButton( backgroundColor: Colors.black,
-          onPressed: () {},
-        ),
-        // Свойство, отвечающее за добавление кнопки. Принимает в себя виджет
-        // FloatingActionButton().
-
-        floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
-        // Свойство, отвечающее за расположение кнопки на экране. Имеет
-        // различные конструкторы.
-
-        bottomNavigationBar: BottomNavigationBar(
-          items: [
-            // Свойство, отвечающее за добавление нижней навигационной панели.
-
-            BottomNavigationBarItem(
-                icon: Icon(Icons.account_circle), label: "Аккаунт"),
-            // Элементы навигационной панели.
-
-            BottomNavigationBarItem(icon: Icon(Icons.edit), label: "Редактор"),
-
-           BottomNavigationBarItem(icon: Icon(Icons.search), label: "Поиск"),
-          ],
-        ),
-        body: Text(
-          // Свойство, содержащее в себе тело страницы. Принимает в себя
-          // различные виджеты. Для примера, в поместим сюда виджет Text().
-
-          "План урока:\n1) Понятие StatelessWidget()\n2) Виджет MaterialApp()\n3)"
-              " Виджет Scaffold()\n4) Виджет Text()\n5) Виджет TextStyle()\n6)"
-              " Виджет Color()",
-        ),
-        appBar: AppBar(
-          // Свойство, отвечающее за наличие верхнего меню - аппбара. Принимает
-          // в себя виджет AppBar().
-
-          centerTitle: true,
-          // Свойство, отвечающее за расположение заголовка аппбара по центру.
-          // Принимает в себя true или false.
-
-          title: Text(
-            "Урок 20", // Свойство, отвечающее за заголовок аппбара. Принимает
-            // в себя строку с текстом заголовка.
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Animation example')),
+      body: InkWell(
+        onTap: () => _animationController.forward(),
+        child: Opacity(
+          opacity: 1.0 - _animationController.value,
+          child: Container(
+            color: Colors.orange,
+            height: 200.0,
+            width: 200.0 + (200 * _animationController.value),
           ),
-
-          backgroundColor: Colors.purple, // Свойство, отвечающее за цвет аппбара. Принимает
-          // в себя виджет, содержащий цвет.
-        ),// Свойство, содержащее в себе тело страницы. Принимает в себя различные виджеты. Для примера, в поместим сюда виджет Text().
+        ),
       ),
     );
   }
 }
 
-/// В дальнейшем мы познакомимся подробнее с каждым из этих элементов.
+
