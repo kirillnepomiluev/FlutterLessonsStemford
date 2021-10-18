@@ -39,7 +39,10 @@ class _CreateCharacterState extends State<CreateCharacter> {
                       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                       child: Row(
                         children: [
-                          Text("Имя:"),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10,),
+                            child: Text("Имя:"),
+                          ),
                           Expanded(
                               child: TextField()
                           ),
@@ -50,7 +53,10 @@ class _CreateCharacterState extends State<CreateCharacter> {
                       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                       child: Row(
                         children: [
-                          Text("Пол:"),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Text("Пол:"),
+                          ),
                           Text("Мужской:"),
                           Checkbox(value: true, onChanged: null),
                           Text("Женский:"),
@@ -62,21 +68,22 @@ class _CreateCharacterState extends State<CreateCharacter> {
                       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                       child: Row(
                         children: [
-                          Text("Раса:"),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Text("Класс:"),
+                          ),
                           DropdownButton(items: null),
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                      child: Row(
-                        children: [
-                          Text("Класс:"),
-                          DropdownButton(items: null),
-                        ],
-                      ),
+                    ElevatedButton(
+                        onPressed: (){},
+                        child: Text("Создать персонажа"),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Colors.white),
+                          foregroundColor: MaterialStateProperty.all(Colors.black),
+                        ),
                     ),
-                    ElevatedButton(onPressed: (){}, child: Text("Создать персонажа")),
                   ],
                 ),
               ),

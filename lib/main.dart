@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lessons/screens/battleScreen.dart';
 import 'package:lessons/screens/createCharacter.dart';
 
 void main() => runApp(MyGame());
@@ -9,7 +10,7 @@ class MyGame extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return MaterialApp(
-      home: CreateCharacter(),
+      home: BattleScreen(),
     );
   }
 }
