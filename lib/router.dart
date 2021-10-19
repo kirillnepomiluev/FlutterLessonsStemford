@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lessons/secondScreen.dart';
-
+import 'account_page.dart';
 import 'main.dart';
 
 class RouteNames {
@@ -10,6 +10,7 @@ class RouteNames {
   // обьектов класса созданно и есть ли они вообще, эта переменная всегда одна.
 
   static const secondPage = '/second';
+  static const account = '/account';
 }
 class MyRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -20,6 +21,9 @@ class MyRouter {
 
       case RouteNames.secondPage:
         return MaterialPageRoute(builder: (_) => Lessons2());
+
+      case RouteNames.account:
+        return MaterialPageRoute(builder: (_) => AccountPage());
 
       default:
         return MaterialPageRoute(

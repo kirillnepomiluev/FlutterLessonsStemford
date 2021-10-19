@@ -8,43 +8,41 @@ import 'package:lessons/router.dart';
 
 import 'main.dart';
 
-class Lessons2 extends StatefulWidget {
-  const Lessons2({Key? key}) : super(key: key);
+class AccountPage extends StatefulWidget {
+  const AccountPage({Key? key}) : super(key: key);
 
   @override
-  _Lessons2State createState() => _Lessons2State();
+  _AccountPageState createState() => _AccountPageState();
 }
 
-class _Lessons2State extends State<Lessons2> {
+class _AccountPageState extends State<AccountPage> {
 
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Страница 2"),
+        title: const Text("Аккаунт"),
       ),
+      drawer: Drawer(child: Center(child: Container(child:  Text("меню"),)) ,),
       body: Center(
         child: IconButton(
           onPressed: (){
             // Navigator.push(context,
             //     MaterialPageRoute(builder: (context) => Lessons()));
-           //Navigator.pushReplacementNamed(context, RouteNames.main);
            Navigator.pop(context);
           },
           icon: const Icon(Icons.arrow_back),
         ),
       ),
         bottomNavigationBar: BottomNavigationBar(
-          currentIndex: 1,
-
+          currentIndex: 0,
           onTap: (index){
             switch (index) {
               case 0:
-              Navigator.pushNamed(context, RouteNames.account);
-              break;
+               // Navigator.pushNamed(context, RouteNames.account);
               case 1:
-               // Navigator.pushNamed(context, RouteNames.secondPage);
+                Navigator.pushNamed(context, RouteNames.secondPage);
                 break;
             }
 

@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: "Уроки Flutter",
-      home: Lessons(),
+     // home: Lessons(),
       onGenerateRoute: MyRouter.generateRoute,
       initialRoute: RouteNames.main,
     );
@@ -38,14 +38,42 @@ class _LessonsState extends State<Lessons> {
      body: Center(
        child: IconButton(
          onPressed: (){
-           Navigator.push(context,
-               MaterialPageRoute(builder: (context) => Lessons2()));
+           Navigator.pushNamed(context, RouteNames.secondPage
+              );
 
          //  Navigator.pushNamed(context, RouteNames.secondPage);
          },
          icon: const Icon(Icons.arrow_forward),
        ),
      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 0,
+        onTap: (index){
+          switch (index) {
+            case 0:
+            Navigator.pushNamed(context, RouteNames.account);
+            break;
+            case 1:
+              Navigator.pushNamed(context, RouteNames.secondPage);
+              break;
+          }
+
+        },
+        items: const [
+          // Свойство, отвечающее за добавление нижней навигационной панели.
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_box), label: "Аккаунт",
+
+          ),
+          // Элементы навигационной панели.
+
+          BottomNavigationBarItem(icon: Icon(Icons.edit), label: "Редактор"),
+
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Поиск"),
+        ],
+      )
+,
     );
   }
 }
