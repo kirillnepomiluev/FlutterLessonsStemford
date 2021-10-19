@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:lessons/data/battle_manager.dart';
+import 'package:lessons/data/character.dart';
+import 'package:lessons/data/start_characters_const.dart';
 
-import '../CharacterContainer.dart';
+import '../character_container.dart';
 
 class BattleScreen extends StatefulWidget {
   @override
@@ -10,6 +13,20 @@ class BattleScreen extends StatefulWidget {
 }
 
 class _BattleScreenState extends State<BattleScreen> {
+
+  String stateText = "";
+
+  @override
+  void initState() {
+    CharacterClass? userPers = Classes.startPersonages[Classes.warrior];
+    userPers!.name = "Имя";
+    startNewGame(userPers);
+    BattleManager.startNewBattle();
+
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -19,16 +36,26 @@ class _BattleScreenState extends State<BattleScreen> {
           Expanded(
             flex: 6,
             child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
+              decoration: const BoxDecoration(
+                image:  DecorationImage(
                   image: NetworkImage("https://phonoteka.org/uploads/posts/2021-07/1625780946_2-phonoteka-org-p-zamok-v-gorakh-art-krasivo-2.jpg",),
                   fit: BoxFit.fill,
                 ),
               ),
-              child: Row( crossAxisAlignment: CrossAxisAlignment.end,
+              child: Stack( alignment: Alignment.topCenter,
                 children: [
-                  Expanded(child: CharacterContainer()),
-                  Expanded(child: Image.network("https://img1.picmix.com/output/stamp/normal/9/1/2/0/690219_3fc82.png", fit: BoxFit.contain,)),
+                  Row( crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Expanded(child: CharacterContainer()),
+                      Expanded(child: CharacterContainer(enemy: true,)),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 200),
+                    child: Text(stateText, style:  const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize:  40,  color:  Colors.red
+                    ),),
+                  )
                 ],
               ),
             ),
@@ -36,7 +63,7 @@ class _BattleScreenState extends State<BattleScreen> {
           Expanded(
             flex: 4,
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage("https://phonoteka.org/uploads/posts/2021-06/1623283755_6-phonoteka_org-p-kamennaya-kladka-tekstura-besshovnaya-cher-13.jpg",),
                   fit: BoxFit.fill,
@@ -46,7 +73,7 @@ class _BattleScreenState extends State<BattleScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Card(
-                    color: Color(0x5FFFFFFF),
+                    color: const Color(0x5FFFFFFF),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -54,15 +81,50 @@ class _BattleScreenState extends State<BattleScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: ElevatedButton(
-                            onPressed: () {},
-                            child: Text("Атаковать!"),
+                            onPressed: () async {
+                             BattleActionsResults resultAction =   await BattleManager.currentBattle!.battleActionStep(BattleActions.attack);
+                             if (resultAction == BattleActionsResults.winBattle) {
+
+                               setState(() {
+                                 stateText = "Победа!!!";
+                               });
+                                currentGameData.qWins ++;
+
+                               await Future.delayed(const Duration(seconds: 2));
+                               BattleManager.startNewBattle();
+                               setState(() {
+                                 stateText = "";
+                               });
+                             } else if (resultAction == BattleActionsResults.loseBattle) {
+                               setState(() {
+                                 stateText = "Поражение!!!";
+                               });
+                               currentGameData.qLosts --;
+
+                               await Future.delayed(const Duration(seconds: 2));
+                               loseBattle();
+                               BattleManager.startNewBattle();
+
+                               setState(() {
+                                 stateText = "";
+                               });
+
+
+                             } else {
+                               setState(() {
+
+
+                               });
+                             }
+                            },
+                            child: const Text("Атаковать!"),
                             style: ButtonStyle(
                               backgroundColor:
                                   MaterialStateProperty.all(Colors.white60),
                               foregroundColor:
                                   MaterialStateProperty.all(Colors.black),
                               side: MaterialStateProperty.all(
-                                  BorderSide(width: 1, color: Colors.black)),
+                                  const BorderSide(width: 1, color: Colors.black)),
                             ),
                           ),
                         ),
@@ -70,14 +132,14 @@ class _BattleScreenState extends State<BattleScreen> {
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: ElevatedButton(
                             onPressed: () {},
-                            child: Text("Защищаться!"),
+                            child: const Text("Защищаться!"),
                             style: ButtonStyle(
                               backgroundColor:
                                   MaterialStateProperty.all(Colors.white60),
                               foregroundColor:
                                   MaterialStateProperty.all(Colors.black),
                               side: MaterialStateProperty.all(
-                                  BorderSide(width: 1, color: Colors.black)),
+                                 const BorderSide(width: 1, color: Colors.black)),
                             ),
                           ),
                         ),
@@ -85,14 +147,14 @@ class _BattleScreenState extends State<BattleScreen> {
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: ElevatedButton(
                             onPressed: () {},
-                            child: Text("Сбежать!"),
+                            child: const Text("Сбежать!"),
                             style: ButtonStyle(
                               backgroundColor:
                                   MaterialStateProperty.all(Colors.white60),
                               foregroundColor:
                                   MaterialStateProperty.all(Colors.black),
                               side: MaterialStateProperty.all(
-                                  BorderSide(width: 1, color: Colors.black)),
+                                  const BorderSide(width: 1, color: Colors.black)),
                             ),
                           ),
                         ),
@@ -100,14 +162,14 @@ class _BattleScreenState extends State<BattleScreen> {
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: ElevatedButton(
                             onPressed: () {},
-                            child: Text("Выпить зелье!"),
+                            child: const Text("Выпить зелье!"),
                             style: ButtonStyle(
                               backgroundColor:
                                   MaterialStateProperty.all(Colors.white60),
                               foregroundColor:
                                   MaterialStateProperty.all(Colors.black),
                               side: MaterialStateProperty.all(
-                                  BorderSide(width: 1, color: Colors.black)),
+                                  const BorderSide(width: 1, color: Colors.black)),
                             ),
                           ),
                         ),
@@ -115,14 +177,14 @@ class _BattleScreenState extends State<BattleScreen> {
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: ElevatedButton(
                             onPressed: () {},
-                            child: Text("Секретный прием!"),
+                            child: const Text("Секретный прием!"),
                             style: ButtonStyle(
                               backgroundColor:
                                   MaterialStateProperty.all(Colors.white60),
                               foregroundColor:
                                   MaterialStateProperty.all(Colors.black),
                               side: MaterialStateProperty.all(
-                                  BorderSide(width: 1, color: Colors.black)),
+                                  const BorderSide(width: 1, color: Colors.black)),
                             ),
                           ),
                         ),
