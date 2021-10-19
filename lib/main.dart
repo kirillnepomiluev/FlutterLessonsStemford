@@ -29,7 +29,7 @@ class _LessonsState extends State<Lessons> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Страница 1"),
+        title: const Text("Страница 1"),
       ),
      body: Center(
        child: IconButton(
@@ -39,7 +39,7 @@ class _LessonsState extends State<Lessons> {
 
          //  Navigator.pushNamed(context, RouteNames.secondPage);
          },
-         icon: Icon(Icons.arrow_forward),
+         icon: const Icon(Icons.arrow_forward),
        ),
      ),
     );
