@@ -6,9 +6,11 @@ import 'package:lessons/secondScreen.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: "Уроки Flutter",
       home: Lessons(),
       onGenerateRoute: MyRouter.generateRoute,
@@ -18,6 +20,8 @@ class MyApp extends StatelessWidget {
 }
 
 class Lessons extends StatefulWidget {
+  const Lessons({Key? key}) : super(key: key);
+
   @override
   _LessonsState createState() => _LessonsState();
 }

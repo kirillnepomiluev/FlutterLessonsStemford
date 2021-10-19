@@ -1,5 +1,5 @@
 
-List<Map<String, String>> charecter = [
+const List<Map<String, String>> charecter = [
   {
     "Класс" : "Воин",
     "Тип доспехов" : "Латы",
