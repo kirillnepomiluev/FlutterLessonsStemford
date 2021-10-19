@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return const MaterialApp(
-      home: MyAnimation(),
+      home: MyApp2(),
     );
   }
 }
@@ -25,8 +25,6 @@ class MyAnimation extends StatefulWidget {
 }
 
 class _MyAnimationState extends State<MyAnimation> {
-
-
   bool startAnimation = false;
 
   @override
@@ -36,25 +34,23 @@ class _MyAnimationState extends State<MyAnimation> {
       body: Center(
         child: InkWell(
           onTap: () => setState(() => startAnimation = !startAnimation),
-          child: buildAnimatedContainer(),
+          child: buildAnimatedCrossFade(),
 
         ),
       ),
     );
-
-
   }
 
   AnimatedContainer buildAnimatedContainer() {
     return AnimatedContainer(
             decoration: BoxDecoration(
               color: startAnimation ? Colors.lightGreen : Colors.red,
-              borderRadius: BorderRadius.circular(startAnimation ? 50.0 : 0.0),
+              borderRadius: BorderRadius.circular(startAnimation ? 20.0 : 0.0),
             ),
             width: startAnimation ? 100 : 200,
             height: startAnimation ? 100 : 200,
             curve: Curves.easeInOutCubic,
-            duration: const Duration(seconds: 1),
+            duration: const Duration(seconds: 2),
           );
   }
 
@@ -62,21 +58,18 @@ class _MyAnimationState extends State<MyAnimation> {
     return Center(
       child: AnimatedCrossFade(
              firstCurve: Curves.easeInOutCubic,
-
-
+              secondCurve: Curves.bounceInOut,
               reverseDuration: const Duration(seconds: 2),
               crossFadeState: startAnimation ? CrossFadeState.showFirst : CrossFadeState.showSecond,
               duration: const Duration(seconds: 2),
-              alignment: Alignment.center,
-              firstChild: Center(child: Text("Старт")),
-              secondChild: Center(
-                child: Container(
-                  width: 200, height: 200,
-                  decoration: const BoxDecoration(
-                  color: Colors.red, borderRadius: BorderRadius.all(
-                    Radius.circular(50))
-                ),),
-              ),
+              alignment: Alignment.bottomRight,
+              firstChild:  const Text("Старт"),
+              secondChild: Container(
+                width: 200, height: 200,
+                decoration: const BoxDecoration(
+                color: Colors.red, borderRadius: BorderRadius.all(
+                  Radius.circular(50))
+              ),),
             ),
     );
   }
@@ -98,7 +91,7 @@ class _MyApp2State extends State<MyApp2> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     _animationController = AnimationController(
-       duration: const Duration(milliseconds: 1000),
+       duration: const Duration(milliseconds: 5000),
         vsync: this,
      reverseDuration: const Duration(milliseconds: 1000)
     );
@@ -118,16 +111,20 @@ class _MyApp2State extends State<MyApp2> with SingleTickerProviderStateMixin {
           _animationController.reverse();
         },
        onTapDown: (a) => _animationController.forward(),
-        onTapUp: (a) {
-          debugPrint("onTapUp");
-          _animationController.reverse();
-        },
+        // onTapUp: (a) {
+        //   debugPrint("onTapUp");
+        //   _animationController.reverse();
+        // },
         child: Opacity(
-          opacity: 1.0 - _animationController.value,
-          child: Container(
-            color: Colors.orange,
-            height: 200.0,
-            width: 200.0 + (200 * _animationController.value),
+          opacity: 1.0 - _animationController.value /3,
+          child: Padding(
+            padding:  EdgeInsets.only(top: 0 + ((500 * _animationController.value))),
+            child: Container(
+              color: Colors.orange,
+              height: 100.0,
+              width: 100,
+              child: Center(child: Text(_animationController.value.toStringAsFixed(2))),
+            ),
           ),
         ),
       ),
