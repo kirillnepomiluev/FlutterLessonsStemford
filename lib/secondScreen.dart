@@ -26,7 +26,7 @@ class _Lessons2State extends State<Lessons2> {
                 MaterialPageRoute(builder: (context) => Lessons()));
           //  Navigator.pushNamed(context, RouteNames.main);
           },
-          icon: Icon(Icons.arrow_forward),
+          icon: Icon(Icons.arrow_back),
         ),
       ),
     );
