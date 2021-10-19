@@ -4,17 +4,16 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-
-    return MaterialApp(
+    return const MaterialApp(
       home: MyAnimation(),
     );
   }
 }
 
 class MyAnimation extends StatefulWidget {
+  const MyAnimation({Key? key}) : super(key: key);
 
   @override
   _MyAnimationState createState() {
@@ -29,24 +28,25 @@ class _MyAnimationState extends State<MyAnimation> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    // return Scaffold(
-    //   appBar: AppBar(title: Text('Animation example')),
-    //   body: Center(
-    //     child: AnimatedOpacity(
-    //       duration: Duration(milliseconds: 2000),
-    //       opacity: isView ? 0.0 : 1.0,
-    //       child: InkWell(
-    //         onTap: () => setState(() => isView = !isView),
-    //         child: Container(
-    //           width: 200.0,
-    //           height: 200.0,
-    //           color: Colors.green,
-    //         ),
-    //       ),
-    //     ),
-    //   ),
-    // );
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('Урок по анимации часть 1')),
+      body: Center(
+        child: AnimatedOpacity(
+          curve: Curves.bounceInOut,
+          duration: const Duration(milliseconds: 2000),
+          opacity: isView ? 0.0 : 1.0,
+          child: InkWell(
+            onTap: () => setState(() => isView = !isView),
+            child: Container(
+              width: 200.0,
+              height: 200.0,
+              color: Colors.green,
+            ),
+          ),
+        ),
+      ),
+    );
 
     // return Scaffold(
     //   appBar: AppBar(title: Text('Animation example')),
@@ -67,30 +67,31 @@ class _MyAnimationState extends State<MyAnimation> {
     //   ),
     // );
 
-    return Scaffold(
-      appBar: AppBar(title: Text('Animation example')),
-      body: Stack(
-        alignment: Alignment.centerLeft,
-        children: [
-          AnimatedPositioned(
-            left: position,
-            duration: Duration(milliseconds: 400),
-            child: Image.network('https://cdn.pixabay.com/photo/2012/04/11/17/34/car-29078_640.png',
-              width: 200.0,
-            ),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Text('GO!'),
-        onPressed: () {
-          setState(() {
-            position += 40;
-          });
-        },
-      ),
-    );
-  }
+  //   return Scaffold(
+  //     appBar: AppBar(title: Text('Animation example')),
+  //     body: Stack(
+  //       alignment: Alignment.centerLeft,
+  //       children: [
+  //         AnimatedPositioned(
+  //           left: position,
+  //           duration: const Duration(milliseconds: 400),
+  //           child: Image.network('https://cdn.pixabay.com/photo/2012/04/11/17/34/car-29078_640.png',
+  //             width: 200.0,
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //     floatingActionButton: FloatingActionButton(
+  //       child: const Text('GO!'),
+  //       onPressed: () {
+  //         setState(() {
+  //           position += 40;
+  //         });
+  //       },
+  //     ),
+  //   );
+  // }
+ }
 }
 
 
