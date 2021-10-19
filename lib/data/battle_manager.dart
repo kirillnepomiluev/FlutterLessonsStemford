@@ -42,10 +42,18 @@ class Battle {
         break;
     }
 
-    await Future.delayed(const Duration(milliseconds: 500)
-    );
 
 
+
+    if (enemy.currentHp > 0) {
+      return BattleActionsResults.continueBattle;
+    } else {
+        return BattleActionsResults.winBattle;
+    }
+
+  }
+
+  Future<BattleActionsResults> battleActionEnemyStep ()  async{
     if (enemy.currentHp > 0) {
       BattleActions enemyAction = choseEnemyAction();
 
@@ -75,11 +83,10 @@ class Battle {
       }
 
     } else {
-        return BattleActionsResults.winBattle;
-
+      return BattleActionsResults.winBattle;
     }
-
   }
+
 }
 
 BattleActions choseEnemyAction() {

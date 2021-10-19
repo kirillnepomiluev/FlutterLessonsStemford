@@ -26,6 +26,81 @@ class _BattleScreenState extends State<BattleScreen> {
     super.initState();
   }
 
+  onActionPressed (BattleActions battleAction ) async{
+    {
+      BattleActionsResults resultAction =   await BattleManager.currentBattle!.battleActionStep(battleAction);
+      if (resultAction == BattleActionsResults.winBattle) {
+
+        setState(() {
+          stateText = "Победа!!!";
+        });
+        currentGameData.qWins ++;
+
+        await Future.delayed(const Duration(seconds: 2));
+        BattleManager.startNewBattle();
+        setState(() {
+          stateText = "";
+        });
+      } else if (resultAction == BattleActionsResults.loseBattle) {
+        setState(() {
+          stateText = "Поражение!!!";
+        });
+        currentGameData.qLosts --;
+
+        await Future.delayed(const Duration(seconds: 2));
+        loseBattle();
+        BattleManager.startNewBattle();
+
+        setState(() {
+          stateText = "";
+        });
+
+
+      } else {
+        setState(() {
+
+
+        });
+
+        await Future.delayed(const Duration(milliseconds: 500));
+
+        BattleActionsResults resultActionEnemy =   await BattleManager.currentBattle!.battleActionEnemyStep();
+        if (resultActionEnemy == BattleActionsResults.winBattle) {
+
+          setState(() {
+            stateText = "Победа!!!";
+          });
+          currentGameData.qWins ++;
+
+          await Future.delayed(const Duration(seconds: 2));
+          BattleManager.startNewBattle();
+          setState(() {
+            stateText = "";
+          });
+        } else if (resultActionEnemy == BattleActionsResults.loseBattle) {
+          setState(() {
+            stateText = "Поражение!!!";
+          });
+          currentGameData.qLosts --;
+
+          await Future.delayed(const Duration(seconds: 2));
+          loseBattle();
+          BattleManager.startNewBattle();
+
+          setState(() {
+            stateText = "";
+          });
+
+
+        } else {
+          setState(() {
+
+
+          });
+        }
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +109,7 @@ class _BattleScreenState extends State<BattleScreen> {
       body: Column(
         children: [
           Expanded(
-            flex: 6,
+            flex:6,
             child: Container(
               decoration: const BoxDecoration(
                 image:  DecorationImage(
@@ -50,8 +125,8 @@ class _BattleScreenState extends State<BattleScreen> {
                       Expanded(child: CharacterContainer(enemy: true,)),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 200),
+                  Positioned( top: 200,
+
                     child: Text(stateText, style:  const TextStyle(
                       fontWeight: FontWeight.bold, fontSize:  40,  color:  Colors.red
                     ),),
@@ -81,41 +156,8 @@ class _BattleScreenState extends State<BattleScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: ElevatedButton(
-                            onPressed: () async {
-                             BattleActionsResults resultAction =   await BattleManager.currentBattle!.battleActionStep(BattleActions.attack);
-                             if (resultAction == BattleActionsResults.winBattle) {
-
-                               setState(() {
-                                 stateText = "Победа!!!";
-                               });
-                                currentGameData.qWins ++;
-
-                               await Future.delayed(const Duration(seconds: 2));
-                               BattleManager.startNewBattle();
-                               setState(() {
-                                 stateText = "";
-                               });
-                             } else if (resultAction == BattleActionsResults.loseBattle) {
-                               setState(() {
-                                 stateText = "Поражение!!!";
-                               });
-                               currentGameData.qLosts --;
-
-                               await Future.delayed(const Duration(seconds: 2));
-                               loseBattle();
-                               BattleManager.startNewBattle();
-
-                               setState(() {
-                                 stateText = "";
-                               });
-
-
-                             } else {
-                               setState(() {
-
-
-                               });
-                             }
+                            onPressed: () {
+                              onActionPressed(BattleActions.attack);
                             },
                             child: const Text("Атаковать!"),
                             style: ButtonStyle(
@@ -131,7 +173,9 @@ class _BattleScreenState extends State<BattleScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              onActionPressed(BattleActions.defence);
+                            },
                             child: const Text("Защищаться!"),
                             style: ButtonStyle(
                               backgroundColor:
@@ -146,7 +190,9 @@ class _BattleScreenState extends State<BattleScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              onActionPressed(BattleActions.tryRun);
+                            },
                             child: const Text("Сбежать!"),
                             style: ButtonStyle(
                               backgroundColor:
@@ -161,7 +207,9 @@ class _BattleScreenState extends State<BattleScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              onActionPressed(BattleActions.useHealthPotion);
+                            },
                             child: const Text("Выпить зелье!"),
                             style: ButtonStyle(
                               backgroundColor:
@@ -176,7 +224,9 @@ class _BattleScreenState extends State<BattleScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              onActionPressed(BattleActions.secretSpec);
+                            },
                             child: const Text("Секретный прием!"),
                             style: ButtonStyle(
                               backgroundColor:
