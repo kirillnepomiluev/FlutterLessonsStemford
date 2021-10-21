@@ -209,7 +209,7 @@ final  kingsStuff = Weapon(
     imageURL: "assets/images/"   //TODO положить картинку
 );
 
-final  iceScepter = Weapon(
+final  iceScepter =  Weapon(
     name: "Ледяной скипетр",
     classType: "Маг",
     rare: "Эпический",

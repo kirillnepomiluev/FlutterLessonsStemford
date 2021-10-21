@@ -9,7 +9,7 @@ static  const String hunter = "Охотник";
 static  const List<String> classesList = [mag, warrior, rogue, hunter];
 
 static final Map<String, CharacterClass> startPersonages = {
-  Classes.mag :  CharacterClass(classType: Classes.mag  , strength: 3, agility: 3 , intelligence: 7, armor: noArmor, weapon: noWeapon),
+  Classes.mag :  CharacterClass(classType: Classes.mag  , strength: 3, agility: 3 , intelligence: 7, armor: noArmor, weapon: fireLordStuff, imageURL: "character_mage.png" ),
   Classes.warrior : CharacterClass(classType: Classes.warrior  ,
       strength: 6, agility: 3 , intelligence: 3, armor: noArmor, weapon: noWeapon,
       imageURL: "character_warrior.png"

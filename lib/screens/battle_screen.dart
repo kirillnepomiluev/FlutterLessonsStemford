@@ -6,6 +6,10 @@ import 'package:lessons/data/start_characters_const.dart';
 import '../character_container.dart';
 
 class BattleScreen extends StatefulWidget {
+final  String  name;
+final  String classPers;
+  const BattleScreen(this.name, this.classPers ,{Key? key}) : super(key: key);
+
   @override
   _BattleScreenState createState() {
     return _BattleScreenState();
@@ -20,8 +24,8 @@ class _BattleScreenState extends State<BattleScreen> {
 
   @override
   void initState() {
-    CharacterClass? userPers = Classes.startPersonages[Classes.warrior];
-    userPers!.name = "Имя";
+    CharacterClass? userPers = Classes.startPersonages[widget.classPers];
+    userPers!.name = widget.name;
     startNewGame(userPers);
     BattleManager.startNewBattle();
 
