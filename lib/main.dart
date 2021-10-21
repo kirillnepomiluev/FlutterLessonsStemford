@@ -17,7 +17,7 @@ class MyGame extends StatelessWidget {
     // );
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MenuGame(),
+      home: BattleScreen(),
     );
   }
 }

@@ -49,7 +49,7 @@ class _CharacterContainerState extends State<CharacterContainer> {
             backgroundColor: Colors.red,
             value: _currentHPPercent,
           ),
-          Image.network(_imageUrl),
+          Image.asset("assets/images/" + _imageUrl),
         ],
       ),
     );

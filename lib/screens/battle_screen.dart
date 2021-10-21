@@ -15,6 +15,8 @@ class BattleScreen extends StatefulWidget {
 class _BattleScreenState extends State<BattleScreen> {
 
   String stateText = "";
+  double animatedHeight = 50;
+  double animatedOpacity = 0;
 
   @override
   void initState() {
@@ -33,6 +35,8 @@ class _BattleScreenState extends State<BattleScreen> {
 
         setState(() {
           stateText = "Победа!!!";
+          animatedHeight = 100;
+          animatedOpacity = 1.0;
         });
         currentGameData.qWins ++;
 
@@ -40,10 +44,14 @@ class _BattleScreenState extends State<BattleScreen> {
         BattleManager.startNewBattle();
         setState(() {
           stateText = "";
+          animatedHeight = 50;
+          animatedOpacity = 0;
         });
       } else if (resultAction == BattleActionsResults.loseBattle) {
         setState(() {
           stateText = "Поражение!!!";
+          animatedHeight = 100;
+          animatedOpacity = 1.0;
         });
         currentGameData.qLosts --;
 
@@ -53,6 +61,8 @@ class _BattleScreenState extends State<BattleScreen> {
 
         setState(() {
           stateText = "";
+          animatedHeight = 50;
+          animatedOpacity = 0;
         });
 
 
@@ -69,26 +79,35 @@ class _BattleScreenState extends State<BattleScreen> {
 
           setState(() {
             stateText = "Победа!!!";
+            animatedHeight = 100;
+            animatedOpacity = 1.0;
+
           });
           currentGameData.qWins ++;
 
-          await Future.delayed(const Duration(seconds: 2));
+          await Future.delayed(const Duration(seconds: 3));
           BattleManager.startNewBattle();
           setState(() {
             stateText = "";
+            animatedHeight = 50;
+            animatedOpacity = 0;
           });
         } else if (resultActionEnemy == BattleActionsResults.loseBattle) {
           setState(() {
             stateText = "Поражение!!!";
+            animatedHeight = 100;
+            animatedOpacity = 1.0;
           });
           currentGameData.qLosts --;
 
-          await Future.delayed(const Duration(seconds: 2));
+          await Future.delayed(const Duration(seconds: 3));
           loseBattle();
           BattleManager.startNewBattle();
 
           setState(() {
             stateText = "";
+            animatedHeight = 50;
+            animatedOpacity = 0;
           });
 
 
@@ -125,11 +144,21 @@ class _BattleScreenState extends State<BattleScreen> {
                       Expanded(child: CharacterContainer(enemy: true,)),
                     ],
                   ),
-                  Positioned( top: 200,
+                  Positioned( top: 40,
 
-                    child: Text(stateText, style:  const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize:  40,  color:  Colors.red
-                    ),),
+                    child: AnimatedOpacity(
+                      curve: Curves.bounceInOut,
+                      opacity: animatedOpacity,
+                      duration: const Duration(seconds: 2),
+                      child: AnimatedContainer(
+                        curve: Curves.easeInSine,
+                        duration: const Duration(seconds: 2),
+                        height: animatedHeight,
+                        child: Text(stateText, style:  const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize:  40,  color:  Colors.red
+                        ),),
+                      ),
+                    ),
                   )
                 ],
               ),
