@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lessons/screens/battle_screen.dart';
 import 'package:lessons/screens/create_character.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:lessons/screens/menu.dart';
 
 void main() => runApp(MyGame());
 
@@ -16,7 +17,7 @@ class MyGame extends StatelessWidget {
     // );
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: BattleScreen(),
+      home: MenuGame(),
     );
   }
 }

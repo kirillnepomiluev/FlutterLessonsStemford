@@ -26,7 +26,7 @@ class _BattleScreenState extends State<BattleScreen> {
     super.initState();
   }
 
-  onActionPressed (BattleActions battleAction ) async{
+  onActionPressed (BattleActions battleAction ) async {
     {
       BattleActionsResults resultAction =   await BattleManager.currentBattle!.battleActionStep(battleAction);
       if (resultAction == BattleActionsResults.winBattle) {
