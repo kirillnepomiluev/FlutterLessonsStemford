@@ -23,6 +23,7 @@ static final List<CharacterClass> enemyesList = <CharacterClass>[
   CharacterClass(classType: Classes.warrior  , strength: 6, agility: 3 , intelligence: 3, armor: noArmor, weapon: noWeapon, name: "Воин новичек", imageURL: "enemy_warrior.png"),
   CharacterClass(classType: Classes.rogue  , strength: 4, agility: 6 , intelligence: 4, armor: noArmor, weapon: noWeapon, name: "Разбойник новичек", imageURL: "enemy_rogue.png"),
   CharacterClass(classType: Classes.hunter  , strength: 3, agility: 7 , intelligence: 3, armor: noArmor, weapon: noWeapon, name: "Охотник новичек", imageURL: "enemy_hunter.png"),
+ // CharacterClass(classType: Classes.hunter  , strength: 7, agility: 10 , intelligence: 6, armor: eliteArmor, weapon: qualitativeBow, name: "Охотник 2", imageURL: "enemy_hunter.png"),
 
 ];
 

@@ -42,7 +42,8 @@ class _BattleScreenState extends State<BattleScreen> {
           animatedHeight = 100;
           animatedOpacity = 1.0;
         });
-        currentGameData.qWins ++;
+        winBattle();
+
 
         await Future.delayed(const Duration(seconds: 2));
         BattleManager.startNewBattle();

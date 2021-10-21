@@ -143,15 +143,36 @@ class UserCharacter{
 
  UserCharacter currentGameData = UserCharacter();
 
+void winBattle() {
+  currentGameData.qWins ++;
+  currentGameData.experience = currentGameData.experience  + 50;
+   int nextExperianceToLevelUp = (currentGameData.character!.level * 200
+  + pow(1.5, (currentGameData.character!.level -1) ) *200).floor();
+  print ("nextExperianceToLevelUp  $nextExperianceToLevelUp");
+  if (currentGameData.experience >  nextExperianceToLevelUp ) {
+    levelUp ();
+  }
+}
 
- startNewGame (CharacterClass characterClass) {
+levelUp () {
+  currentGameData.character!.level ++;
+  currentGameData.character!.strength ++;
+  currentGameData.character!.agility ++;
+  currentGameData.character!.intelligence ++;
+  currentGameData.character!.maxHp = currentGameData.character!.strength *10;
+  currentGameData.character!.currentHp = currentGameData.character!.maxHp;
+  print("levelUP! level: ${currentGameData.character!.level}");
+
+}
+void  startNewGame (CharacterClass characterClass) {
    currentGameData.qGames++;
    currentGameData.character = characterClass;
    currentGameData.qWins = 0;
    currentGameData.qLosts = 0;
    currentGameData.experience= 0;
  }
-  loseBattle () {
+
+void   loseBattle () {
     currentGameData.character!.currentHp = currentGameData.character!.maxHp;
     currentGameData.character!.gold =  currentGameData.character!.gold - 10;
     if (currentGameData.character!.gold  <0) {

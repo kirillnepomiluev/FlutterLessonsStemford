@@ -94,7 +94,7 @@ BattleActions choseEnemyAction() {
   int randomNumber = random.nextInt(10);
   if (randomNumber <2) {
     return BattleActions.defence;
-  } else if (randomNumber <9) {
+  } else if (randomNumber < 9) {
     return BattleActions.attack;
   } else {
     return BattleActions.tryRun;
