@@ -148,11 +148,10 @@ void winBattle() {
   currentGameData.experience = currentGameData.experience  + 50;
    int nextExperianceToLevelUp = (currentGameData.character!.level * 200
   + pow(1.5, (currentGameData.character!.level -1) ) *200).floor();
-
-  print ("nextExperianceToLevelUp  $nextExperianceToLevelUp");
-   if (currentGameData.experience >  nextExperianceToLevelUp ) {
-     levelUp ();
-   }
+    print ("nextExperianceToLevelUp  $nextExperianceToLevelUp");
+  if (currentGameData.experience >  nextExperianceToLevelUp ) {
+    levelUp ();
+  }
 }
 
 void  startNewGame (CharacterClass characterClass) {
