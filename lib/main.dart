@@ -39,23 +39,27 @@ class _MyApp2State extends State<MyApp2> {
 
   //метод загружает дынне из сохраненных настроек и обновлеят состояени
   Future<void> getSavedData() async {
-    prefs = await SharedPreferences.getInstance();
-    prefsLoaded = true;
-    name = prefs!.getString("name") ?? "";
-    age = prefs!.getInt("age") ?? 0;
-    men = prefs!.getBool("men") ?? true;
-    hasDataSaved = age != 0;   //проверяем если возраст не указан, то считаем, что данных нет.
-    setState(() {});
+      SharedPreferences.getInstance().then((prefs1 ) {
+        prefsLoaded = true;
+        name = prefs1.getString("name") ?? "";
+        age = prefs1.getInt("age") ?? 0;
+        men = prefs1.getBool("men") ?? true;
+        hasDataSaved = age != 0;   //проверяем если возраст не указан, то считаем,
+        // что данных нет.
+        setState(() {});
+    });
   }
 
   //метод срабатывает до построения экрана и вызывает загрузку данных
   @override
   void initState() {
     getSavedData();
+
+
     super.initState();
   }
 
-  showMyDialog(String text) {
+  void showMyDialog(String text) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -99,7 +103,7 @@ class _MyApp2State extends State<MyApp2> {
       child: Center(
         child: Padding(
           padding: const EdgeInsets.all(10),
-          child: Container(
+          child: SizedBox(
             width: double.infinity,
             child: Card(
               color: const Color(0x5FFFFFFF),
@@ -182,7 +186,7 @@ class _MyApp2State extends State<MyApp2> {
                       }
                       int _age = 0;
                       try {
-                        int _age = int.parse(ageController.text);
+                         _age = int.parse(ageController.text);
                       } catch (e) {
                         debugPrint(e.toString());
                       }
@@ -197,7 +201,10 @@ class _MyApp2State extends State<MyApp2> {
                       prefs!.setString("name", name);
                       prefs!.setInt("age", age);
                       prefs!.setBool("men", men);
-                      setState(() {});
+
+                      setState(() {
+                        hasDataSaved = age != 0;
+                      });
                     },
                     child: const Text("Сохранить персонажа"),
                     style: ButtonStyle(
