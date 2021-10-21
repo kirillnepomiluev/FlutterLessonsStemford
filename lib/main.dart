@@ -10,15 +10,19 @@ SharedPreferences? prefs;
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: MyApp2(),
     );
   }
 }
 
 class MyApp2 extends StatefulWidget {
+  const MyApp2({Key? key}) : super(key: key);
+
   @override
   _MyApp2State createState() {
     return _MyApp2State();
@@ -40,7 +44,7 @@ class _MyApp2State extends State<MyApp2> {
     name = prefs!.getString("name") ?? "";
     age = prefs!.getInt("age") ?? 0;
     men = prefs!.getBool("men") ?? true;
-    hasDataSaved = age == 0;
+    hasDataSaved = age != 0;   //проверяем если возраст не указан, то считаем, что данных нет.
     setState(() {});
   }
 
@@ -73,8 +77,11 @@ class _MyApp2State extends State<MyApp2> {
   Widget bodyWithSavedData() {
     return Center(
       child: Center(
-          child: Text("Данные персонажа загруженны успешно! n\  "
-              "имя - $name, возраст - $age , пол ${men ? "мужской" : "женский"}")),
+          child: Padding(
+            padding: const EdgeInsets.all(50.0),
+            child: Text("Данные персонажа загруженны успешно! n\  "
+                "имя - $name, возраст - $age , пол ${men ? "мужской" : "женский"}"),
+          )),
     );
   }
 
@@ -82,7 +89,7 @@ class _MyApp2State extends State<MyApp2> {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: NetworkImage(
               "https://phonoteka.org/uploads/posts/2021-07/1625780946_2-phonoteka-org-p-zamok-v-gorakh-art-krasivo-2.jpg"),
@@ -91,15 +98,15 @@ class _MyApp2State extends State<MyApp2> {
       ),
       child: Center(
         child: Padding(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: Container(
             width: double.infinity,
             child: Card(
-              color: Color(0x5FFFFFFF),
+              color: const Color(0x5FFFFFFF),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
+                  const Text(
                     "Создание персонажа:",
                     style: TextStyle(
                         color: Colors.black,
@@ -107,11 +114,11 @@ class _MyApp2State extends State<MyApp2> {
                         fontWeight: FontWeight.w600),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     child: Row(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
+                        const Padding(
+                          padding: EdgeInsets.symmetric(
                             horizontal: 10,
                           ),
                           child: Text("Имя:"),
@@ -124,14 +131,14 @@ class _MyApp2State extends State<MyApp2> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     child: Row(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
                           child: Text("Пол:"),
                         ),
-                        Text("Мужской:"),
+                        const Text("Мужской:"),
                         Checkbox(
                             value: men,
                             onChanged: (value) {
@@ -139,7 +146,7 @@ class _MyApp2State extends State<MyApp2> {
                                 men = value ?? false;
                               });
                             }),
-                        Text("Женский:"),
+                        const Text("Женский:"),
                         Checkbox(
                             value: !men,
                             onChanged: (value) {
@@ -151,11 +158,11 @@ class _MyApp2State extends State<MyApp2> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     child: Row(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
                           child: Text("Возраст:"),
                         ),
                         Expanded(
